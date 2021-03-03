@@ -1,0 +1,9 @@
+#include "js-parser-internal.h"
+#include "js-scanner-internal.h"
+#if ENABLED (JERRY_PARSER)
+#if ENABLED (JERRY_ES2015_FOR_OF)
+#endif /* ENABLED (JERRY_ES2015_FOR_OF) */
+#if ENABLED (JERRY_ES2015_ARROW_FUNCTION)
+#else /* !ENABLED (JERRY_ES2015_ARROW_FUNCTION) */
+#endif /* ENABLED (JERRY_ES2015_ARROW_FUNCTION) */
+#endif /* ENABLED (JERRY_PARSER) */

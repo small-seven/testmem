@@ -1,0 +1,10 @@
+#include <common.h>
+#include <asm/io.h>
+#include <dm.h>
+#include <clk.h>
+#include <phy.h>
+#include <regmap.h>
+#include <reset.h>
+#include <syscon.h>
+#include "designware.h"
+#include <asm/arch/system_manager.h>

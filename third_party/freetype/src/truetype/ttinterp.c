@@ -1,0 +1,212 @@
+#include <ft2build.h>
+#include FT_INTERNAL_DEBUG_H
+#include FT_INTERNAL_CALC_H
+#include FT_TRIGONOMETRY_H
+#include FT_SYSTEM_H
+#include FT_DRIVER_H
+#include FT_MULTIPLE_MASTERS_H
+#include "ttinterp.h"
+#include "tterrors.h"
+#include "ttsubpix.h"
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#include "ttgxvar.h"
+#endif
+#ifdef TT_USE_BYTECODE_INTERPRETER
+#undef  FT_COMPONENT
+#define FT_COMPONENT  ttinterp
+#define NO_SUBPIXEL_HINTING                                                  \
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#define SUBPIXEL_HINTING_INFINALITY                                          \
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#define SUBPIXEL_HINTING_MINIMAL                                             \
+#endif
+#define PROJECT( v1, v2 )                                   \
+#define DUALPROJ( v1, v2 )                                   \
+#define FAST_PROJECT( v )                          \
+#define FAST_DUALPROJ( v )                          \
+#define BOUNDS( x, n )   ( (FT_UInt)(x)  >= (FT_UInt)(n)  )
+#define BOUNDSL( x, n )  ( (FT_ULong)(x) >= (FT_ULong)(n) )
+#undef  SUCCESS
+#define SUCCESS  0
+#undef  FAILURE
+#define FAILURE  1
+#undef  PACK
+#define PACK( x, y )  ( ( x << 4 ) | y )
+#ifdef FT_DEBUG_LEVEL_TRACE
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#else
+#endif
+#endif /* FT_DEBUG_LEVEL_TRACE */
+#undef PACK
+#ifndef FT_CONFIG_OPTION_NO_ASSEMBLER
+#if defined( __arm__ )                                 && \
+#define TT_MulFix14  TT_MulFix14_arm
+#if defined( __CC_ARM ) || defined( __ARMCC__ )
+#elif defined( __GNUC__ )
+#if defined( __clang__ ) && defined( __thumb2__ )
+#else
+#endif
+#endif
+#endif /* __arm__ && ( __thumb2__ || !__thumb__ ) */
+#endif /* !FT_CONFIG_OPTION_NO_ASSEMBLER */
+#if defined( __GNUC__ )                              && \
+#define TT_MulFix14  TT_MulFix14_long_long
+#if ( __GNUC__ * 100 + __GNUC_MINOR__ ) >= 406
+#pragma GCC diagnostic push
+#endif
+#pragma GCC diagnostic ignored "-Wlong-long"
+#if ( __GNUC__ * 100 + __GNUC_MINOR__ ) >= 406
+#pragma GCC diagnostic pop
+#endif
+#endif /* __GNUC__ && ( __i386__ || __x86_64__ ) */
+#ifndef TT_MulFix14
+#endif  /* !TT_MulFix14 */
+#if defined( __GNUC__ )        && \
+#define TT_DotFix14  TT_DotFix14_long_long
+#if ( __GNUC__ * 100 + __GNUC_MINOR__ ) >= 406
+#pragma GCC diagnostic push
+#endif
+#pragma GCC diagnostic ignored "-Wlong-long"
+#if ( __GNUC__ * 100 + __GNUC_MINOR__ ) >= 406
+#pragma GCC diagnostic pop
+#endif
+#endif /* __GNUC__ && (__arm__ || __i386__ || __x86_64__) */
+#ifndef TT_DotFix14
+#endif /* TT_DotFix14 */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#define ARRAY_BOUND_ERROR                         \
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#if 0
+#endif
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+  typedef struct  IUP_WorkerRec_
+  {
+    FT_Vector*  orgs;   /* original and current coordinate */
+    FT_Vector*  curs;   /* arrays                          */
+    FT_Vector*  orus;
+    FT_UInt     max_points;
+
+  } IUP_WorkerRec, *IUP_Worker;
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif /* TT_CONFIG_OPTION_GX_VAR_SUPPORT */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
+#endif
+#ifdef FT_DEBUG_LEVEL_TRACE
+#endif /* FT_DEBUG_LEVEL_TRACE */
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif
+#ifdef TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY
+#endif /* TT_SUPPORT_SUBPIXEL_HINTING_INFINALITY */
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif
+#if 0
+#endif
+#if 0
+#endif
+#else /* !TT_USE_BYTECODE_INTERPRETER */

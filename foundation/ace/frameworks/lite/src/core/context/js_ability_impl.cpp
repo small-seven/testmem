@@ -1,0 +1,15 @@
+#include "js_ability_impl.h"
+#include "component.h"
+#include "js_app_context.h"
+#include "js_app_environment.h"
+#if ENABLED(SECURE_C_FUNCTION)
+#include "securec.h"
+#endif // ENABLED(SECURE_C_FUNCTION)
+#include "ace_event_error_code.h"
+#include "ace_log.h"
+#include "component_utils.h"
+#include "fatal_handler.h"
+#include "js_profiler.h"
+#include "module_manager.h"
+#include "presets/localization_module.h"
+#include "presets/timer_module.h"

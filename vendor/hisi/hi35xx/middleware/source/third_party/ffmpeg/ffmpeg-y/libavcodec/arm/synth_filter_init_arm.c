@@ -1,0 +1,6 @@
+#include "config.h"
+#include "libavutil/arm/cpu.h"
+#include "libavutil/attributes.h"
+#include "libavutil/internal.h"
+#include "libavcodec/fft.h"
+#include "libavcodec/synth_filter.h"

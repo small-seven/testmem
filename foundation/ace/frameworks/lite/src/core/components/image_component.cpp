@@ -1,0 +1,7 @@
+#include "image_component.h"
+#include "ace_log.h"
+#include "ace_mem_base.h"
+#include "js_app_context.h"
+#include "js_fwk_common.h"
+#include "key_parser.h"
+#include "keys.h"

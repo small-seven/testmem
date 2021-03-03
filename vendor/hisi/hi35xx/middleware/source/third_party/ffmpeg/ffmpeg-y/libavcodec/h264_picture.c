@@ -1,0 +1,18 @@
+#include "libavutil/avassert.h"
+#include "libavutil/imgutils.h"
+#include "libavutil/timer.h"
+#include "internal.h"
+#include "cabac.h"
+#include "cabac_functions.h"
+#include "error_resilience.h"
+#include "avcodec.h"
+#include "h264dec.h"
+#include "h264data.h"
+#include "h264chroma.h"
+#include "h264_mvpred.h"
+#include "mathops.h"
+#include "mpegutils.h"
+#include "rectangle.h"
+#include "thread.h"
+#if CONFIG_ERROR_RESILIENCE
+#endif /* CONFIG_ERROR_RESILIENCE */

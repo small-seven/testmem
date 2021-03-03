@@ -1,0 +1,49 @@
+#include "afglobal.h"
+#include "afmodule.h"
+#include "afloader.h"
+#include "aferrors.h"
+#ifdef FT_DEBUG_AUTOFIT
+#ifndef FT_MAKE_OPTION_SINGLE_OBJECT
+#ifdef __cplusplus
+#endif
+#ifdef __cplusplus
+#endif
+#endif
+#endif
+#include FT_INTERNAL_OBJECTS_H
+#include FT_INTERNAL_DEBUG_H
+#include FT_DRIVER_H
+#include FT_SERVICE_PROPERTIES_H
+#undef  FT_COMPONENT
+#define FT_COMPONENT  afmodule
+#ifndef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef AF_CONFIG_OPTION_USE_WARPER
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#endif /* AF_CONFIG_OPTION_USE_WARPER */
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
+#endif
+#ifdef AF_CONFIG_OPTION_USE_WARPER
+#endif
+#ifdef AF_CONFIG_OPTION_USE_WARPER
+#endif /* AF_CONFIG_OPTION_USE_WARPER */
+#ifdef AF_CONFIG_OPTION_USE_WARPER
+#endif
+#ifdef FT_DEBUG_AUTOFIT
+#endif
+#ifdef FT_DEBUG_AUTOFIT
+#ifdef FT_DEBUG_LEVEL_TRACE
+#endif
+#ifdef FT_DEBUG_LEVEL_TRACE
+#endif
+#else /* !FT_DEBUG_AUTOFIT */
+#endif /* !FT_DEBUG_AUTOFIT */

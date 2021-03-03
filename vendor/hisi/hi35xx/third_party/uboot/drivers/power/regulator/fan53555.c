@@ -1,0 +1,10 @@
+#include <common.h>
+#include <bitfield.h>
+#include <errno.h>
+#include <dm.h>
+#include <fdtdec.h>
+#include <i2c.h>
+#include <asm/gpio.h>
+#include <power/fan53555.h>
+#include <power/pmic.h>
+#include <power/regulator.h>

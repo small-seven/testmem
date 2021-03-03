@@ -1,0 +1,5 @@
+#include "client/ability_dump_client.h"
+#include "ability_kit_command.h"
+#include "liteipc_adapter.h"
+#include "securec.h"
+#include "util/abilityms_log.h"

@@ -1,0 +1,10 @@
+#include <common.h>
+#include <backlight.h>
+#include <dm.h>
+#include <panel.h>
+#include <video.h>
+#include <asm/gpio.h>
+#include <asm/test.h>
+#include <dm/test.h>
+#include <test/ut.h>
+#include <power/regulator.h>

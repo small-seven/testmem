@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <zephyr.h>
+#include <misc/printk.h>
+#include "getline-zephyr.h"
+#include "jerryscript.h"
+#include "jerryscript-port.h"
+#include "jerryscript-ext/handler.h"

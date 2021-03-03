@@ -1,0 +1,10 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <fdtdec.h>
+#include <malloc.h>
+#include <asm/io.h>
+#include <asm/irq.h>
+#include <asm/pci.h>
+#include <asm/pirq_routing.h>
+#include <asm/tables.h>

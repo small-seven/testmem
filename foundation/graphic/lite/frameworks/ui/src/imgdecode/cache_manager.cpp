@@ -1,0 +1,5 @@
+#include "imgdecode/cache_manager.h"
+#include "file.h"
+#include "graphic_log.h"
+#include "hal_tick.h"
+#include "securec.h"

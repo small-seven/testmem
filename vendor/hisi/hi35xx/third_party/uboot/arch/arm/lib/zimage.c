@@ -1,0 +1,7 @@
+#include <common.h>
+#define	LINUX_ARM_ZIMAGE_MAGIC	0x016f2818
+#define	BAREBOX_IMAGE_MAGIC	0x00786f62
+#ifndef CONFIG_SPL_FRAMEWORK
+#endif
+#ifndef CONFIG_SPL_FRAMEWORK
+#endif

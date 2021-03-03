@@ -1,0 +1,12 @@
+#include <common.h>
+#include <adc.h>
+#include <dm.h>
+#include <dm/root.h>
+#include <dm/util.h>
+#include <dm/test.h>
+#include <errno.h>
+#include <fdtdec.h>
+#include <power/regulator.h>
+#include <power/sandbox_pmic.h>
+#include <sandbox-adc.h>
+#include <test/ut.h>

@@ -1,0 +1,15 @@
+#include "ecma-alloc.h"
+#include "ecma-array-object.h"
+#include "ecma-iterator-object.h"
+#include "ecma-builtin-helpers.h"
+#include "ecma-builtins.h"
+#include "ecma-exceptions.h"
+#include "ecma-gc.h"
+#include "ecma-globals.h"
+#include "ecma-helpers.h"
+#include "ecma-number-arithmetic.h"
+#include "ecma-objects.h"
+#include "ecma-objects-general.h"
+#include "ecma-function-object.h"
+#if ENABLED (JERRY_ES2015_BUILTIN_ITERATOR)
+#endif /* ENABLED (JERRY_ES2015_BUILTIN_ITERATOR) */

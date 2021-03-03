@@ -1,0 +1,6 @@
+#include "components/ui_chart.h"
+#include "common/typed_text.h"
+#include "draw/draw_arc.h"
+#include "draw/draw_line.h"
+#include "geometry2d.h"
+#include "securec.h"

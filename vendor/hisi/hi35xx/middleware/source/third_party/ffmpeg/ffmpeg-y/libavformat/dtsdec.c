@@ -1,0 +1,7 @@
+#include "libavutil/crc.h"
+#include "libavcodec/bytestream.h"
+#include "libavcodec/dca.h"
+#include "libavcodec/dca_syncwords.h"
+#include "libavcodec/get_bits.h"
+#include "avformat.h"
+#include "rawdec.h"

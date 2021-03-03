@@ -1,0 +1,10 @@
+#include <config.h>
+#include <common.h>
+#include <dm.h>
+#include <asm/types.h>
+#include <malloc.h>
+#include "jobdesc.h"
+#include "desc.h"
+#include "jr.h"
+#include "rsa_caam.h"
+#include <u-boot/rsa-mod-exp.h>

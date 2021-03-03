@@ -1,0 +1,5 @@
+#include "config.h"
+#include "libavutil/avstring.h"
+#include "libavutil/mem.h"
+#include "url.h"
+#include "libavformat/protocol_list.c"

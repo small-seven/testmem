@@ -1,0 +1,9 @@
+#include <common.h>
+#include <spl.h>
+#include <i2c.h>
+#include <asm/arch/clock.h>
+#include <asm/arch/ddr_defs.h>
+#include <asm/gpio.h>
+#include <power/pmic.h>
+#include <power/tps65218.h>
+#include "board.h"

@@ -1,0 +1,9 @@
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+#include <linux/version.h>
+#include <sys/utsname.h>
+#include <linux/unistd.h>
+#include <linux/sysctl.h>
+#include "tst_test.h"
+#include "lapi/syscalls.h"

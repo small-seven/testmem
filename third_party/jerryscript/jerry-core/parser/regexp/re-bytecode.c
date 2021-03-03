@@ -1,0 +1,7 @@
+#include "ecma-globals.h"
+#include "re-bytecode.h"
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#define REGEXP_BYTECODE_BLOCK_SIZE 64UL
+#if ENABLED (JERRY_REGEXP_DUMP_BYTE_CODE)
+#endif /* ENABLED (JERRY_REGEXP_DUMP_BYTE_CODE) */
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */

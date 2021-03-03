@@ -1,0 +1,37 @@
+#include <common.h>
+#include <cpu_func.h>
+#include <errno.h>
+#include <asm/armv7m.h>
+#include <asm/io.h>
+#define V7M_CACHE_REG_ICIALLU		((u32 *)(V7M_CACHE_MAINT_BASE + 0x00))
+#define INVAL_ICACHE_POU		0
+#define V7M_CACHE_REG_ICIMVALU		((u32 *)(V7M_CACHE_MAINT_BASE + 0x08))
+#define V7M_CACHE_REG_DCIMVAC		((u32 *)(V7M_CACHE_MAINT_BASE + 0x0C))
+#define V7M_CACHE_REG_DCISW		((u32 *)(V7M_CACHE_MAINT_BASE + 0x10))
+#define V7M_CACHE_REG_DCCMVAU		((u32 *)(V7M_CACHE_MAINT_BASE + 0x14))
+#define V7M_CACHE_REG_DCCMVAC		((u32 *)(V7M_CACHE_MAINT_BASE + 0x18))
+#define V7M_CACHE_REG_DCCSW		((u32 *)(V7M_CACHE_MAINT_BASE + 0x1C))
+#define V7M_CACHE_REG_DCCIMVAC		((u32 *)(V7M_CACHE_MAINT_BASE + 0x20))
+#define V7M_CACHE_REG_DCCISW		((u32 *)(V7M_CACHE_MAINT_BASE + 0x24))
+#define WAYS_SHIFT			30
+#define SETS_SHIFT			5
+#define V7M_PROC_REG_CLIDR		((u32 *)(V7M_PROC_FTR_BASE + 0x00))
+#define V7M_PROC_REG_CTR		((u32 *)(V7M_PROC_FTR_BASE + 0x04))
+#define V7M_PROC_REG_CCSIDR		((u32 *)(V7M_PROC_FTR_BASE + 0x08))
+#define MASK_NUM_WAYS			GENMASK(12, 3)
+#define MASK_NUM_SETS			GENMASK(27, 13)
+#define CLINE_SIZE_MASK			GENMASK(2, 0)
+#define NUM_WAYS_SHIFT			3
+#define NUM_SETS_SHIFT			13
+#define V7M_PROC_REG_CSSELR		((u32 *)(V7M_PROC_FTR_BASE + 0x0C))
+#define SEL_I_OR_D			BIT(0)
+#if !CONFIG_IS_ENABLED(SYS_DCACHE_OFF)
+#else
+#endif
+#if !CONFIG_IS_ENABLED(SYS_ICACHE_OFF)
+#else
+#endif
+#if !CONFIG_IS_ENABLED(SYS_ICACHE_OFF)
+#endif
+#if !CONFIG_IS_ENABLED(SYS_DCACHE_OFF)
+#endif

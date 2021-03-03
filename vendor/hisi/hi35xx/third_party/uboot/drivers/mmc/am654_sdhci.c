@@ -1,0 +1,51 @@
+#include <clk.h>
+#include <common.h>
+#include <dm.h>
+#include <malloc.h>
+#include <power-domain.h>
+#include <regmap.h>
+#include <sdhci.h>
+#define CTL_CFG_2		0x14
+#define SLOTTYPE_MASK		GENMASK(31, 30)
+#define SLOTTYPE_EMBEDDED	BIT(30)
+#define PHY_CTRL1	0x100
+#define PHY_CTRL2	0x104
+#define PHY_CTRL3	0x108
+#define PHY_CTRL4	0x10C
+#define PHY_CTRL5	0x110
+#define PHY_CTRL6	0x114
+#define PHY_STAT1	0x130
+#define PHY_STAT2	0x134
+#define IOMUX_ENABLE_SHIFT	31
+#define IOMUX_ENABLE_MASK	BIT(IOMUX_ENABLE_SHIFT)
+#define OTAPDLYENA_SHIFT	20
+#define OTAPDLYENA_MASK		BIT(OTAPDLYENA_SHIFT)
+#define OTAPDLYSEL_SHIFT	12
+#define OTAPDLYSEL_MASK		GENMASK(15, 12)
+#define STRBSEL_SHIFT		24
+#define STRBSEL_MASK		GENMASK(27, 24)
+#define SEL50_SHIFT		8
+#define SEL50_MASK		BIT(SEL50_SHIFT)
+#define SEL100_SHIFT		9
+#define SEL100_MASK		BIT(SEL100_SHIFT)
+#define DLL_TRIM_ICP_SHIFT	4
+#define DLL_TRIM_ICP_MASK	GENMASK(7, 4)
+#define DR_TY_SHIFT		20
+#define DR_TY_MASK		GENMASK(22, 20)
+#define ENDLL_SHIFT		1
+#define ENDLL_MASK		BIT(ENDLL_SHIFT)
+#define DLLRDY_SHIFT		0
+#define DLLRDY_MASK		BIT(DLLRDY_SHIFT)
+#define PDB_SHIFT		0
+#define PDB_MASK		BIT(PDB_SHIFT)
+#define CALDONE_SHIFT		1
+#define CALDONE_MASK		BIT(CALDONE_SHIFT)
+#define RETRIM_SHIFT		17
+#define RETRIM_MASK		BIT(RETRIM_SHIFT)
+#define DRIVER_STRENGTH_50_OHM	0x0
+#define DRIVER_STRENGTH_33_OHM	0x1
+#define DRIVER_STRENGTH_66_OHM	0x2
+#define DRIVER_STRENGTH_100_OHM	0x3
+#define DRIVER_STRENGTH_40_OHM	0x4
+#define AM654_SDHCI_MIN_FREQ	400000
+#define DLL_PRESENT	(1 << 0)

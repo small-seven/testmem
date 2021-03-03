@@ -1,0 +1,61 @@
+#include "pngpriv.h"
+#ifdef PNG_PROGRESSIVE_READ_SUPPORTED
+#define PNG_READ_SIG_MODE   0
+#define PNG_READ_CHUNK_MODE 1
+#define PNG_READ_IDAT_MODE  2
+#define PNG_READ_tEXt_MODE  4
+#define PNG_READ_zTXt_MODE  5
+#define PNG_READ_DONE_MODE  6
+#define PNG_READ_iTXt_MODE  7
+#define PNG_ERROR_MODE      8
+#define PNG_PUSH_SAVE_BUFFER_IF_FULL \
+#define PNG_PUSH_SAVE_BUFFER_IF_LT(N) \
+#ifdef PNG_HANDLE_AS_UNKNOWN_SUPPORTED
+#endif
+#ifdef PNG_HANDLE_AS_UNKNOWN_SUPPORTED
+#endif
+#ifdef PNG_READ_gAMA_SUPPORTED
+#endif
+#ifdef PNG_READ_sBIT_SUPPORTED
+#endif
+#ifdef PNG_READ_cHRM_SUPPORTED
+#endif
+#ifdef PNG_READ_sRGB_SUPPORTED
+#endif
+#ifdef PNG_READ_iCCP_SUPPORTED
+#endif
+#ifdef PNG_READ_sPLT_SUPPORTED
+#endif
+#ifdef PNG_READ_tRNS_SUPPORTED
+#endif
+#ifdef PNG_READ_bKGD_SUPPORTED
+#endif
+#ifdef PNG_READ_hIST_SUPPORTED
+#endif
+#ifdef PNG_READ_pHYs_SUPPORTED
+#endif
+#ifdef PNG_READ_oFFs_SUPPORTED
+#endif
+#ifdef PNG_READ_pCAL_SUPPORTED
+#endif
+#ifdef PNG_READ_sCAL_SUPPORTED
+#endif
+#ifdef PNG_READ_tIME_SUPPORTED
+#endif
+#ifdef PNG_READ_tEXt_SUPPORTED
+#endif
+#ifdef PNG_READ_zTXt_SUPPORTED
+#endif
+#ifdef PNG_READ_iTXt_SUPPORTED
+#endif
+#ifdef PNG_READ_TRANSFORMS_SUPPORTED
+#endif
+#ifdef PNG_READ_INTERLACING_SUPPORTED
+#endif
+#ifdef PNG_READ_INTERLACING_SUPPORTED
+#endif
+#ifdef PNG_READ_INTERLACING_SUPPORTED
+#endif /* READ_INTERLACING */
+#ifdef PNG_READ_INTERLACING_SUPPORTED
+#endif /* READ_INTERLACING */
+#endif /* PROGRESSIVE_READ */

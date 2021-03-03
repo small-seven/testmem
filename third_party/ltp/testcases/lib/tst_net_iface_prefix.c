@@ -1,0 +1,9 @@
+#include <sys/socket.h>
+#include <linux/rtnetlink.h>
+#include <net/if.h>
+#include <stdio.h>
+#include <stdlib.h>
+#define TST_NO_DEFAULT_MAIN
+#include "tst_test.h"
+#include "tst_net.h"
+#include "tst_private.h"

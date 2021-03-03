@@ -1,0 +1,14 @@
+#include <common.h>
+#include <display.h>
+#include <dm.h>
+#include <edid.h>
+#include <panel.h>
+#include <regmap.h>
+#include <syscon.h>
+#include <asm/gpio.h>
+#include <asm/io.h>
+#include <asm/arch-rockchip/clock.h>
+#include <asm/arch-rockchip/lvds_rk3288.h>
+#include <asm/arch-rockchip/grf_rk3288.h>
+#include <dt-bindings/clock/rk3288-cru.h>
+#include <dt-bindings/video/rk3288.h>

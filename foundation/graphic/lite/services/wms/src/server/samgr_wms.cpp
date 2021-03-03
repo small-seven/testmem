@@ -1,0 +1,10 @@
+#include <hos_errno.h>
+#include <hos_init.h>
+#include "feature.h"
+#include "graphic_log.h"
+#include "iproxy_client.h"
+#include "iproxy_server.h"
+#include "iunknown.h"
+#include "samgr_lite.h"
+#include "service.h"
+#include "server/lite_wms.h"

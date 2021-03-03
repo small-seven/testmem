@@ -1,0 +1,9 @@
+#include <linux/types.h>
+#include <linux/kernel.h>
+#include <linux/fs.h>
+#include <linux/ioctl.h>
+#include <linux/module.h>
+#include <linux/init.h>
+#include <asm/uaccess.h>
+#include "tmod.h"
+#include "str_mod.h"

@@ -1,0 +1,4 @@
+#include <signal.h>
+#ifndef POLL_MSG
+#error POLL_MSG not defined
+#endif

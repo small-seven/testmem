@@ -1,0 +1,14 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <fdtdec.h>
+#include <malloc.h>
+#include <asm/io.h>
+#include <dm/test.h>
+#include <dm/root.h>
+#include <dm/device-internal.h>
+#include <dm/uclass-internal.h>
+#include <dm/util.h>
+#include <dm/lists.h>
+#include <dm/of_access.h>
+#include <test/ut.h>

@@ -1,0 +1,5 @@
+#include "dcadec.h"
+#include "dcadata.h"
+#include "dcamath.h"
+#include "dca_syncwords.h"
+#include "unary.h"

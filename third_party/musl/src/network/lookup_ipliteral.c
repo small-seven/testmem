@@ -1,0 +1,10 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <arpa/inet.h>
+#include <limits.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "lookup.h"

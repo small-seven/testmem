@@ -1,0 +1,36 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <led.h>
+#include <asm/io.h>
+#include <dm/lists.h>
+#define LEDS_MAX			24
+#define LED_INIT_REG			0x00
+#define LED_INIT_FASTINTV_MS		20
+#define LED_INIT_FASTINTV_SHIFT		6
+#define LED_INIT_FASTINTV_MASK		(0x3f << LED_INIT_FASTINTV_SHIFT)
+#define LED_INIT_SLEDEN_SHIFT		12
+#define LED_INIT_SLEDEN_MASK		(1 << LED_INIT_SLEDEN_SHIFT)
+#define LED_INIT_SLEDMUX_SHIFT		13
+#define LED_INIT_SLEDMUX_MASK		(1 << LED_INIT_SLEDMUX_SHIFT)
+#define LED_INIT_SLEDCLKNPOL_SHIFT	14
+#define LED_INIT_SLEDCLKNPOL_MASK	(1 << LED_INIT_SLEDCLKNPOL_SHIFT)
+#define LED_INIT_SLEDDATAPPOL_SHIFT	15
+#define LED_INIT_SLEDDATANPOL_MASK	(1 << LED_INIT_SLEDDATAPPOL_SHIFT)
+#define LED_INIT_SLEDSHIFTDIR_SHIFT	16
+#define LED_INIT_SLEDSHIFTDIR_MASK	(1 << LED_INIT_SLEDSHIFTDIR_SHIFT)
+#define LED_MODE_REG_HI			0x04
+#define LED_MODE_REG_LO			0x08
+#define LED_MODE_ON			0
+#define LED_MODE_FAST			1
+#define LED_MODE_BLINK			2
+#define LED_MODE_OFF			3
+#define LED_MODE_MASK			0x3
+#ifdef CONFIG_LED_BLINK
+#endif
+#ifdef CONFIG_LED_BLINK
+#endif
+#ifdef CONFIG_LED_BLINK
+#endif
+#ifdef CONFIG_LED_BLINK
+#endif

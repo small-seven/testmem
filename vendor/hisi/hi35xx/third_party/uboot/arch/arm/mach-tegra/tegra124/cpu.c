@@ -1,0 +1,11 @@
+#include <common.h>
+#include <asm/io.h>
+#include <asm/arch/ahb.h>
+#include <asm/arch/clock.h>
+#include <asm/arch/flow.h>
+#include <asm/arch/pinmux.h>
+#include <asm/arch/tegra.h>
+#include <asm/arch-tegra/clk_rst.h>
+#include <asm/arch-tegra/pmc.h>
+#include <asm/arch-tegra/ap.h>
+#include "../cpu.h"

@@ -1,0 +1,53 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <power/rk8xx_pmic.h>
+#include <power/pmic.h>
+#include <power/regulator.h>
+#ifndef CONFIG_SPL_BUILD
+#define ENABLE_DRIVER
+#endif
+#define NA			0xff
+#define RK808_BUCK_VSEL_MASK	0x3f
+#define RK808_BUCK4_VSEL_MASK	0xf
+#define RK808_LDO_VSEL_MASK	0x1f
+#define RK809_BUCK5_CONFIG(n)		(0xde + (n) * 1)
+#define RK809_BUCK5_VSEL_MASK		0x07
+#define RK817_BUCK_ON_VSEL(n)		(0xbb + 3 * ((n) - 1))
+#define RK817_BUCK_SLP_VSEL(n)		(0xbc + 3 * ((n) - 1))
+#define RK817_BUCK_VSEL_MASK		0x7f
+#define RK817_BUCK_CONFIG(i)		(0xba + (i) * 3)
+#define RK817_LDO_ON_VSEL(n)		(0xcc + 2 * ((n) - 1))
+#define RK817_LDO_SLP_VSEL(n)		(0xcd + 2 * ((n) - 1))
+#define RK817_LDO_VSEL_MASK		0x7f
+#define RK817_POWER_EN(n)		(0xb1 + (n))
+#define RK817_POWER_SLP_EN(n)		(0xb5 + (n))
+#define RK818_BUCK_VSEL_MASK		0x3f
+#define RK818_BUCK4_VSEL_MASK		0x1f
+#define RK818_LDO_VSEL_MASK		0x1f
+#define RK818_LDO3_ON_VSEL_MASK	0xf
+#define RK818_BOOST_ON_VSEL_MASK	0xe0
+#define RK818_USB_ILIM_SEL_MASK		0x0f
+#define RK818_USB_CHG_SD_VSEL_MASK	0x70
+#define RK805_RAMP_RATE_OFFSET		3
+#define RK805_RAMP_RATE_MASK		(3 << RK805_RAMP_RATE_OFFSET)
+#define RK805_RAMP_RATE_3MV_PER_US	(0 << RK805_RAMP_RATE_OFFSET)
+#define RK805_RAMP_RATE_6MV_PER_US	(1 << RK805_RAMP_RATE_OFFSET)
+#define RK805_RAMP_RATE_12_5MV_PER_US	(2 << RK805_RAMP_RATE_OFFSET)
+#define RK805_RAMP_RATE_25MV_PER_US	(3 << RK805_RAMP_RATE_OFFSET)
+#define RK808_RAMP_RATE_OFFSET		3
+#define RK808_RAMP_RATE_MASK		(3 << RK808_RAMP_RATE_OFFSET)
+#define RK808_RAMP_RATE_2MV_PER_US	(0 << RK808_RAMP_RATE_OFFSET)
+#define RK808_RAMP_RATE_4MV_PER_US	(1 << RK808_RAMP_RATE_OFFSET)
+#define RK808_RAMP_RATE_6MV_PER_US	(2 << RK808_RAMP_RATE_OFFSET)
+#define RK808_RAMP_RATE_10MV_PER_US	(3 << RK808_RAMP_RATE_OFFSET)
+#define RK817_RAMP_RATE_OFFSET		6
+#define RK817_RAMP_RATE_MASK		(0x3 << RK817_RAMP_RATE_OFFSET)
+#define RK817_RAMP_RATE_3MV_PER_US	(0x0 << RK817_RAMP_RATE_OFFSET)
+#define RK817_RAMP_RATE_6_3MV_PER_US	(0x1 << RK817_RAMP_RATE_OFFSET)
+#define RK817_RAMP_RATE_12_5MV_PER_US	(0x2 << RK817_RAMP_RATE_OFFSET)
+#define RK817_RAMP_RATE_25MV_PER_US	(0x3 << RK817_RAMP_RATE_OFFSET)
+#ifdef ENABLE_DRIVER
+#endif
+#ifdef ENABLE_DRIVER
+#endif

@@ -1,0 +1,9 @@
+#include <stdint.h>
+#include "libavutil/imgutils.h"
+#include "avcodec.h"
+#include "bytestream.h"
+#include "hap.h"
+#include "internal.h"
+#include "snappy.h"
+#include "texturedsp.h"
+#include "thread.h"

@@ -1,0 +1,6 @@
+#include "parser.h"
+#include "aac_ac3_parser.h"
+#include "adts_header.h"
+#include "adts_parser.h"
+#include "get_bits.h"
+#include "mpeg4audio.h"

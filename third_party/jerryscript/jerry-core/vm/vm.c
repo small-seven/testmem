@@ -1,0 +1,119 @@
+#include "common.h"
+#include "ecma-alloc.h"
+#include "ecma-array-object.h"
+#include "ecma-builtins.h"
+#include "ecma-comparison.h"
+#include "ecma-conversion.h"
+#include "ecma-exceptions.h"
+#include "ecma-function-object.h"
+#include "ecma-gc.h"
+#include "ecma-helpers.h"
+#include "ecma-iterator-object.h"
+#include "ecma-lcache.h"
+#include "ecma-lex-env.h"
+#include "ecma-objects.h"
+#include "ecma-objects-general.h"
+#include "ecma-regexp-object.h"
+#include "ecma-try-catch-macro.h"
+#include "jcontext.h"
+#include "opcodes.h"
+#include "vm.h"
+#include "vm-stack.h"
+#if defined(JERRY_FOR_IAR_CONFIG)
+#include "jerryscript-core.h"
+#endif
+#if ENABLED (JERRY_ES2015_BUILTIN_SYMBOL)
+#endif /* ENABLED (JERRY_ES2015_BUILTIN_SYMBOL) */
+#if ENABLED (JERRY_LCACHE)
+#endif /* ENABLED (JERRY_LCACHE) */
+#if ENABLED (JERRY_ERROR_MESSAGES)
+#else /* !ENABLED (JERRY_ERROR_MESSAGES) */
+#endif /* ENABLED (JERRY_ERROR_MESSAGES) */
+#if ENABLED (JERRY_ERROR_MESSAGES)
+#else /* !ENABLED (JERRY_ERROR_MESSAGES) */
+#endif /* ENABLED (JERRY_ERROR_MESSAGES) */
+#define CBC_OPCODE(arg1, arg2, arg3, arg4) arg4,
+#undef CBC_OPCODE
+#if ENABLED (JERRY_ES2015_MODULE_SYSTEM)
+#endif /* ENABLED (JERRY_ES2015_MODULE_SYSTEM) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#else /* !ENABLED (JERRY_SNAPSHOT_EXEC) */
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */
+#if ENABLED (JERRY_ES2015_ARROW_FUNCTION)
+#endif /* ENABLED (JERRY_ES2015_ARROW_FUNCTION) */
+#if ENABLED (JERRY_ES2015_ARROW_FUNCTION)
+#endif /* ENABLED (JERRY_ES2015_ARROW_FUNCTION) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#define READ_LITERAL_INDEX(destination) \
+#define READ_LITERAL(literal_index, target_value) \
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_VM_EXEC_STOP)
+#endif /* ENABLED (JERRY_VM_EXEC_STOP) */
+#if ENABLED (JERRY_ES2015_OBJECT_INITIALIZER)
+#endif /* ENABLED (JERRY_ES2015_OBJECT_INITIALIZER) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#else /* !ENABLED (JERRY_ES2015_CLASS) */
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#else /* !ENABLED (JERRY_ES2015_CLASS) */
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if !ENABLED (JERRY_VM_EXEC_STOP)
+#endif /* !ENABLED (JERRY_VM_EXEC_STOP) */
+#if ENABLED (JERRY_ES2015_FOR_OF)
+#endif /* ENABLED (JERRY_ES2015_FOR_OF) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_LINE_INFO)
+#endif /* ENABLED (JERRY_LINE_INFO) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#undef READ_LITERAL
+#undef READ_LITERAL_INDEX
+#if ENABLED (JERRY_ES2015_FUNCTION_REST_PARAMETER)
+#endif /* ENABLED (JERRY_ES2015_FUNCTION_REST_PARAMETER) */
+#if ENABLED (JERRY_ES2015_FUNCTION_REST_PARAMETER)
+#endif /* ENABLED (JERRY_ES2015_FUNCTION_REST_PARAMETER) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#if defined(JERRY_FOR_IAR_CONFIG)
+#endif
+#if defined (JERRY_DEBUGGER) || ENABLED (JERRY_LINE_INFO)
+#endif /* defined (JERRY_DEBUGGER) || ENABLED (JERRY_LINE_INFO) */
+#if ENABLED (JERRY_LINE_INFO)
+#endif /* ENABLED (JERRY_LINE_INFO) */
+#if defined(JERRY_FOR_IAR_CONFIG)
+#else
+#endif
+#if ENABLED (JERRY_ES2015_MODULE_SYSTEM)
+#endif /* ENABLED (JERRY_ES2015_MODULE_SYSTEM) */
+#if defined(JERRY_FOR_IAR_CONFIG)
+#else
+#endif

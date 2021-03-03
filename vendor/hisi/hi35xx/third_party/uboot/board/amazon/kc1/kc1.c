@@ -1,0 +1,13 @@
+#include <config.h>
+#include <common.h>
+#include <env.h>
+#include <linux/ctype.h>
+#include <linux/usb/musb.h>
+#include <asm/omap_musb.h>
+#include <asm/arch/sys_proto.h>
+#include <asm/arch/mmc_host_def.h>
+#include <asm/gpio.h>
+#include <asm/emif.h>
+#include <twl6030.h>
+#include "kc1.h"
+#include <asm/mach-types.h>

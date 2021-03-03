@@ -1,0 +1,11 @@
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
+#include <float.h>
+#define AVFORMAT_OS_SUPPORT_H
+#include "libavutil/attributes.h"
+#include "libavutil/opt.h"
+#undef attribute_deprecated
+#define attribute_deprecated
+#include "libavcodec/options_table.h"
+#include "libavformat/options_table.h"

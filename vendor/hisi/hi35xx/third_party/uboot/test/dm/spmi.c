@@ -1,0 +1,11 @@
+#include <common.h>
+#include <fdtdec.h>
+#include <dm.h>
+#include <dm/device.h>
+#include <dm/root.h>
+#include <dm/test.h>
+#include <dm/util.h>
+#include <power/pmic.h>
+#include <spmi/spmi.h>
+#include <asm/gpio.h>
+#include <test/ut.h>

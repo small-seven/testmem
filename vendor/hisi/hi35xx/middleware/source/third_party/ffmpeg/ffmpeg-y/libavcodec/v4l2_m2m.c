@@ -1,0 +1,14 @@
+#include <linux/videodev2.h>
+#include <sys/ioctl.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <fcntl.h>
+#include "libavcodec/avcodec.h"
+#include "libavcodec/internal.h"
+#include "libavutil/pixdesc.h"
+#include "libavutil/imgutils.h"
+#include "libavutil/pixfmt.h"
+#include "v4l2_context.h"
+#include "v4l2_fmt.h"
+#include "v4l2_m2m.h"

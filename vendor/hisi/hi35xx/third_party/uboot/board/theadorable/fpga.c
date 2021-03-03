@@ -1,0 +1,9 @@
+#include <common.h>
+#include <altera.h>
+#include <errno.h>
+#include <asm/gpio.h>
+#include <asm/io.h>
+#include <asm/arch/cpu.h>
+#include <asm/arch/soc.h>
+#include <asm/arch-mvebu/spi.h>
+#include "theadorable.h"

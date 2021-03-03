@@ -1,0 +1,14 @@
+#include <common.h>
+#include <init.h>
+#include <micrel.h>
+#include <nand.h>
+#include <netdev.h>
+#include <phy.h>
+#include <rtc.h>
+#include <asm/io.h>
+#include <asm/mach-types.h>
+#include <asm/arch/hardware.h>
+#include <asm/arch/spr_defs.h>
+#include <asm/arch/spr_misc.h>
+#include <linux/mtd/fsmc_nand.h>
+#include "fpga.h"

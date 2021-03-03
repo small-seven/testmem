@@ -1,0 +1,13 @@
+#include <inttypes.h>
+#include <stdint.h>
+#include <string.h>
+#include "avformat.h"
+#include "internal.h"
+#include "lrc.h"
+#include "metadata.h"
+#include "subtitles.h"
+#include "version.h"
+#include "libavutil/bprint.h"
+#include "libavutil/dict.h"
+#include "libavutil/log.h"
+#include "libavutil/macros.h"

@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/uio.h>
+#include <errno.h>
+#include <unistd.h>
+#include <ctype.h>
+#include "diotest_routines.h"

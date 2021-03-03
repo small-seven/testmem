@@ -1,0 +1,46 @@
+#include <common.h>
+#include <asm/io.h>
+#include <linux/bitops.h>
+#include <pci_ids.h>
+#include "pcie.h"
+#define XR3_CONFIG_BASE			0x7ff30000
+#define XR3_RESET_BASE			0x7ff20000
+#define XR3_PCI_ECAM_START		0x40000000
+#define XR3_PCI_ECAM_SIZE		28	/* as power of 2 = 0x10000000 */
+#define XR3_PCI_IOSPACE_START		0x5f800000
+#define XR3_PCI_IOSPACE_SIZE		23	/* as power of 2 = 0x800000 */
+#define XR3_PCI_MEMSPACE_START		0x50000000
+#define XR3_PCI_MEMSPACE_SIZE		27	/* as power of 2 = 0x8000000 */
+#define XR3_PCI_MEMSPACE64_START	0x4000000000
+#define XR3_PCI_MEMSPACE64_SIZE		33	/* as power of 2 = 0x200000000 */
+#define JUNO_V2M_MSI_START		0x2c1c0000
+#define JUNO_V2M_MSI_SIZE		12	/* as power of 2 = 4096 */
+#define XR3PCI_BASIC_STATUS		0x18
+#define XR3PCI_BS_GEN_MASK		(0xf << 8)
+#define XR3PCI_BS_LINK_MASK		0xff
+#define XR3PCI_VIRTCHAN_CREDITS		0x90
+#define XR3PCI_BRIDGE_PCI_IDS		0x9c
+#define XR3PCI_PEX_SPC2			0xd8
+#define XR3PCI_ATR_PCIE_WIN0		0x600
+#define XR3PCI_ATR_PCIE_WIN1		0x700
+#define XR3PCI_ATR_AXI4_SLV0		0x800
+#define XR3PCI_ATR_TABLE_SIZE		0x20
+#define XR3PCI_ATR_SRC_ADDR_LOW		0x0
+#define XR3PCI_ATR_SRC_ADDR_HIGH	0x4
+#define XR3PCI_ATR_TRSL_ADDR_LOW	0x8
+#define XR3PCI_ATR_TRSL_ADDR_HIGH	0xc
+#define XR3PCI_ATR_TRSL_PARAM		0x10
+#define XR3PCI_ATR_TRSLID_AXIDEVICE	(0x420004)
+#define XR3PCI_ATR_TRSLID_AXIMEMORY	(0x4e0004)  /* Write-through, read/write allocate */
+#define XR3PCI_ATR_TRSLID_PCIE_CONF	(0x000001)
+#define XR3PCI_ATR_TRSLID_PCIE_IO	(0x020000)
+#define XR3PCI_ATR_TRSLID_PCIE_MEMORY	(0x000000)
+#define XR3PCI_ECAM_OFFSET(b, d, o)	(((b) << 20) | \
+#define JUNO_RESET_CTRL			0x1004
+#define JUNO_RESET_CTRL_PHY		BIT(0)
+#define JUNO_RESET_CTRL_RC		BIT(1)
+#define JUNO_RESET_STATUS		0x1008
+#define JUNO_RESET_STATUS_PLL		BIT(0)
+#define JUNO_RESET_STATUS_PHY		BIT(1)
+#define JUNO_RESET_STATUS_RC		BIT(2)
+#define JUNO_RESET_STATUS_MASK		(JUNO_RESET_STATUS_PLL | \

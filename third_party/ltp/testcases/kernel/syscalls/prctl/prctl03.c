@@ -1,0 +1,9 @@
+#include <errno.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <sys/prctl.h>
+#include "tst_test.h"
+#include "lapi/prctl.h"

@@ -1,0 +1,5 @@
+#include "avcodec.h"
+#include "h264chroma.h"
+#include "mathops.h"
+#include "mpegvideo.h"
+#include "vc1.h"

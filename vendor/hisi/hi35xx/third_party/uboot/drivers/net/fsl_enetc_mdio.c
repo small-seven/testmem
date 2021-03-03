@@ -1,0 +1,9 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <pci.h>
+#include <miiphy.h>
+#include <asm/io.h>
+#include <asm/processor.h>
+#include <miiphy.h>
+#include "fsl_enetc.h"

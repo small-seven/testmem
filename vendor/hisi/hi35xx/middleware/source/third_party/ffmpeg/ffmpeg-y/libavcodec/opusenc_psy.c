@@ -1,0 +1,5 @@
+#include "opusenc_psy.h"
+#include "opus_pvq.h"
+#include "opustab.h"
+#include "mdct15.h"
+#include "libavutil/qsort.h"

@@ -1,0 +1,29 @@
+#include "camera_config.h"
+#include "camera_kit.h"
+#include "camera_state_callback.h"
+#include "event_handler.h"
+#include "frame_config.h"
+#include "frame_state_callback.h"
+#include "fstream"
+#include "iostream"
+#include "recorder.h"
+#include "surface.h"
+#include "thread"
+#include "unistd.h"
+#include "gtest/gtest.h"
+#include <climits>
+#define FRAME_RATE_DEFAULT 30
+typedef struct Format {
+    VideoSourceType VideoSource;
+    AudioSourceType AudioSource;
+    int32_t AudioChannels;
+    AudioCodecFormat AudioEncoder;
+    int32_t AudioEncodingBitRate;
+    int32_t AudioSampleRate;
+    VideoCodecFormat VideoEncoder;
+    int32_t VideoEncodingBitRate;
+    int32_t VideoFrameRate;
+    int32_t width;
+    int32_t height;
+    double CaptureRate;
+} RecorderFormat;

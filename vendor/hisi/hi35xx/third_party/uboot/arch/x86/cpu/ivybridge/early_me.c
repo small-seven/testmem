@@ -1,0 +1,10 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <sysreset.h>
+#include <asm/pci.h>
+#include <asm/cpu.h>
+#include <asm/processor.h>
+#include <asm/arch/me.h>
+#include <asm/arch/pch.h>
+#include <asm/io.h>

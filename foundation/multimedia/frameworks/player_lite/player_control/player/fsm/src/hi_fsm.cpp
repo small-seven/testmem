@@ -1,0 +1,12 @@
+#include "hi_fsm.h"
+#include <cstdio>
+#include <cstdlib>
+#include "securec.h"
+#include <unistd.h>
+#include <cstring>
+#include <pthread.h>
+#include "fsm_common.h"
+#include "fsm_state.h"
+#include "hi_state_machine.h"
+#include "fsm_oberver.h"
+#include "media_log.h"

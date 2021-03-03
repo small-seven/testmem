@@ -1,0 +1,5 @@
+#include "yaffs_guts.h"
+#include "yaffs_tagscompat.h"
+#include "yaffs_ecc.h"
+#include "yaffs_getblockinfo.h"
+#include "yaffs_trace.h"

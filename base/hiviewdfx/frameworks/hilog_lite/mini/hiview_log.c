@@ -1,0 +1,12 @@
+#include "string.h"
+#include "stdarg.h"
+#include "hos_types.h"
+#include "hos_init.h"
+#include "hiview_def.h"
+#include "hiview_util.h"
+#include "hiview_config.h"
+#include "hiview_service.h"
+#include "hiview_log.h"
+#include "hiview_log_limit.h"
+#include "hiview_output_log.h"
+#define LOG_IS_OUTPUT(mod) (g_hiviewConfig.logOutputModule & (1 << (mod)))

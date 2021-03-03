@@ -1,0 +1,11 @@
+#define _GNU_SOURCE
+#include <errno.h>
+#include <pwd.h>
+#include <sched.h>
+#include <signal.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include "tst_test.h"
+#include "tst_safe_macros.h"
+#include "lapi/cpuset.h"
+#include "lapi/syscalls.h"

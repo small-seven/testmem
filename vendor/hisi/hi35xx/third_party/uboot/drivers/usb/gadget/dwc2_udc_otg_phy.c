@@ -1,0 +1,13 @@
+#include <common.h>
+#include <linux/errno.h>
+#include <linux/list.h>
+#include <malloc.h>
+#include <linux/usb/ch9.h>
+#include <linux/usb/gadget.h>
+#include <asm/byteorder.h>
+#include <asm/unaligned.h>
+#include <asm/io.h>
+#include <asm/mach-types.h>
+#include "dwc2_udc_otg_regs.h"
+#include "dwc2_udc_otg_priv.h"
+#include <usb/dwc2_udc.h>

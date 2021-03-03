@@ -1,0 +1,67 @@
+#include <common.h>
+#include <clk.h>
+#include <dm.h>
+#include <spi.h>
+#include <reset.h>
+#include <wait_bit.h>
+#include <asm/io.h>
+#define SPI_6348_CLK			0x06
+#define SPI_6348_CMD			0x00
+#define SPI_6348_CTL			0x40
+#define SPI_6348_CTL_SHIFT		6
+#define SPI_6348_FILL			0x07
+#define SPI_6348_IR_MASK		0x04
+#define SPI_6348_IR_STAT		0x02
+#define SPI_6348_RX			0x80
+#define SPI_6348_RX_SIZE		0x3f
+#define SPI_6348_TX			0x41
+#define SPI_6348_TX_SIZE		0x3f
+#define SPI_6358_CLK			0x706
+#define SPI_6358_CMD			0x700
+#define SPI_6358_CTL			0x000
+#define SPI_6358_CTL_SHIFT		14
+#define SPI_6358_FILL			0x707
+#define SPI_6358_IR_MASK		0x702
+#define SPI_6358_IR_STAT		0x704
+#define SPI_6358_RX			0x400
+#define SPI_6358_RX_SIZE		0x220
+#define SPI_6358_TX			0x002
+#define SPI_6358_TX_SIZE		0x21e
+#define SPI_CLK_SHIFT		0
+#define SPI_CLK_20MHZ		(0 << SPI_CLK_SHIFT)
+#define SPI_CLK_0_391MHZ	(1 << SPI_CLK_SHIFT)
+#define SPI_CLK_0_781MHZ	(2 << SPI_CLK_SHIFT)
+#define SPI_CLK_1_563MHZ	(3 << SPI_CLK_SHIFT)
+#define SPI_CLK_3_125MHZ	(4 << SPI_CLK_SHIFT)
+#define SPI_CLK_6_250MHZ	(5 << SPI_CLK_SHIFT)
+#define SPI_CLK_12_50MHZ	(6 << SPI_CLK_SHIFT)
+#define SPI_CLK_25MHZ		(7 << SPI_CLK_SHIFT)
+#define SPI_CLK_MASK		(7 << SPI_CLK_SHIFT)
+#define SPI_CLK_SSOFF_SHIFT	3
+#define SPI_CLK_SSOFF_2		(2 << SPI_CLK_SSOFF_SHIFT)
+#define SPI_CLK_SSOFF_MASK	(7 << SPI_CLK_SSOFF_SHIFT)
+#define SPI_CLK_BSWAP_SHIFT	7
+#define SPI_CLK_BSWAP_MASK	(1 << SPI_CLK_BSWAP_SHIFT)
+#define SPI_CMD_OP_SHIFT	0
+#define SPI_CMD_OP_START	(0x3 << SPI_CMD_OP_SHIFT)
+#define SPI_CMD_SLAVE_SHIFT	4
+#define SPI_CMD_SLAVE_MASK	(0xf << SPI_CMD_SLAVE_SHIFT)
+#define SPI_CMD_PREPEND_SHIFT	8
+#define SPI_CMD_PREPEND_BYTES	0xf
+#define SPI_CMD_3WIRE_SHIFT	12
+#define SPI_CMD_3WIRE_MASK	(1 << SPI_CMD_3WIRE_SHIFT)
+#define SPI_CTL_TYPE_FD_RW	0
+#define SPI_CTL_TYPE_HD_W	1
+#define SPI_CTL_TYPE_HD_R	2
+#define SPI_IR_DONE_SHIFT	0
+#define SPI_IR_DONE_MASK	(1 << SPI_IR_DONE_SHIFT)
+#define SPI_IR_RXOVER_SHIFT	1
+#define SPI_IR_RXOVER_MASK	(1 << SPI_IR_RXOVER_SHIFT)
+#define SPI_IR_TXUNDER_SHIFT	2
+#define SPI_IR_TXUNDER_MASK	(1 << SPI_IR_TXUNDER_SHIFT)
+#define SPI_IR_TXOVER_SHIFT	3
+#define SPI_IR_TXOVER_MASK	(1 << SPI_IR_TXOVER_SHIFT)
+#define SPI_IR_RXUNDER_SHIFT	4
+#define SPI_IR_RXUNDER_MASK	(1 << SPI_IR_RXUNDER_SHIFT)
+#define SPI_IR_CLEAR_MASK	(SPI_IR_DONE_MASK |\
+#define SPI_CLK_CNT		8

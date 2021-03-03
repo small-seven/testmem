@@ -1,0 +1,7 @@
+#include "ecma-comparison.h"
+#include "ecma-conversion.h"
+#include "ecma-exceptions.h"
+#include "ecma-helpers.h"
+#include "ecma-objects.h"
+#include "ecma-try-catch-macro.h"
+#include "opcodes.h"

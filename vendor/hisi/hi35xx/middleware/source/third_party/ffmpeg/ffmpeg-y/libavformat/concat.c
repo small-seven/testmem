@@ -1,0 +1,5 @@
+#include "libavutil/avstring.h"
+#include "libavutil/mem.h"
+#include "avformat.h"
+#include "url.h"
+#define AV_CAT_SEPARATOR "|"

@@ -1,0 +1,13 @@
+#include <stdint.h>
+#include <string.h>
+#include "libavutil/common.h"
+#include "libavutil/pixdesc.h"
+#include "libavutil/pixfmt.h"
+#include "avcodec.h"
+#include "idctdsp.h"
+#include "jpegtables.h"
+#include "put_bits.h"
+#include "mjpegenc.h"
+#include "mjpegenc_common.h"
+#include "mjpegenc_huffman.h"
+#include "mjpeg.h"

@@ -1,0 +1,6 @@
+#include "ecma-helpers.h"
+#include "lit-strings.h"
+#include "ecma-init-finalize.h"
+#include "lit-char-helpers.h"
+#include "js-parser-internal.h"
+#include "test-common.h"

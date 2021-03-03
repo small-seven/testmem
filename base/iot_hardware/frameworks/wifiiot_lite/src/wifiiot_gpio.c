@@ -1,0 +1,5 @@
+#include "wifiiot_gpio.h"
+#include "hal_wifiiot_gpio.h"
+#include "hal_wifiiot_gpio_ex.h"
+#include "wifiiot_errno.h"
+#include "wifiiot_gpio_ex.h"

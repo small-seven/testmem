@@ -1,0 +1,5 @@
+#include "avcodec.h"
+#include "bsf.h"
+#include "bytestream.h"
+#include "dca_syncwords.h"
+#include "libavutil/mem.h"

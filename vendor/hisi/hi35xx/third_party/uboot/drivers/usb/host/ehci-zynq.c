@@ -1,0 +1,9 @@
+#include <common.h>
+#include <dm.h>
+#include <usb.h>
+#include <asm/arch/hardware.h>
+#include <asm/arch/sys_proto.h>
+#include <asm/io.h>
+#include <usb/ehci-ci.h>
+#include <usb/ulpi.h>
+#include "ehci.h"

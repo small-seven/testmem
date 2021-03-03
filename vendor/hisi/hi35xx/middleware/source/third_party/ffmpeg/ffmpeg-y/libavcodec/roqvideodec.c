@@ -1,0 +1,6 @@
+#include "libavutil/avassert.h"
+#include "libavutil/imgutils.h"
+#include "avcodec.h"
+#include "bytestream.h"
+#include "internal.h"
+#include "roqvideo.h"

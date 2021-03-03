@@ -1,0 +1,37 @@
+#include "ddr_interface.h"
+#include "ddr_training_impl.h"
+#ifdef DDR_SW_TRAINING_FUNC_PUBLIC
+#ifdef DDR_TRAINING_CUT_CODE_CONFIG
+#ifdef DDR_TRAINING_STAT_CONFIG
+#endif
+#ifdef DDR_LPCA_TRAINING_CONFIG
+#endif
+#ifdef DDR_WL_TRAINING_CONFIG
+#endif
+#ifdef DDR_DATAEYE_TRAINING_CONFIG
+#endif
+#ifdef DDR_HW_TRAINING_CONFIG
+#endif
+#ifdef DDR_MPR_TRAINING_CONFIG
+#endif
+#ifdef DDR_GATE_TRAINING_CONFIG
+#endif
+#ifdef DDR_VREF_TRAINING_CONFIG
+#endif
+#else
+#ifdef DDR_HW_TRAINING_CONFIG
+#endif
+#ifdef SYSCTRL_DDR_TRAINING_VERSION_FLAG
+#endif
+#ifdef SYSCTRL_DDR_TRAINING_CFG_SEC
+#endif
+#ifdef DDR_TRAINING_STAT_CONFIG
+#endif
+#endif /* DDR_TRAINING_CUT_CODE_CONFIG */
+#endif /* DDR_SW_TRAINING_FUNC_PUBLIC */
+#ifdef DDR_PCODE_TRAINING_CONFIG
+#else
+#endif
+#ifdef DDR_HW_TRAINING_CONFIG
+#else
+#endif /* DDR_HW_TRAINING_CONFIG */

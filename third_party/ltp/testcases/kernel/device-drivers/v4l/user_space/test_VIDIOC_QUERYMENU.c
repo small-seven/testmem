@@ -1,0 +1,11 @@
+#include <sys/ioctl.h>
+#include <errno.h>
+#include <string.h>
+#include <linux/videodev2.h>
+#include <linux/errno.h>
+#include <CUnit/CUnit.h>
+#include "v4l2_test.h"
+#include "dev_video.h"
+#include "video_limits.h"
+#include "v4l2_validator.h"
+#include "test_VIDIOC_QUERYCTRL.h"

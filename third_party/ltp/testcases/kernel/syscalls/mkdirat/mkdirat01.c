@@ -1,0 +1,11 @@
+#define _GNU_SOURCE
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <signal.h>
+#include "test.h"
+#include "lapi/mkdirat.h"
+#include "safe_macros.h"

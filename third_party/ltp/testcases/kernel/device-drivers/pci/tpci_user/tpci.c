@@ -1,0 +1,10 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include "test.h"
+#include "safe_macros.h"
+#include "old_module.h"
+#include "../tpci_kernel/tpci.h"

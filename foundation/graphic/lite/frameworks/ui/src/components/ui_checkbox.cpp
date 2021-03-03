@@ -1,0 +1,6 @@
+#include "common/image.h"
+#include "components/ui_checkbox.h"
+#include "default_resource/check_box_res.h"
+#include "draw/draw_image.h"
+#include "draw/draw_rect.h"
+#include "imgdecode/cache_manager.h"

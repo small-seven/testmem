@@ -1,0 +1,38 @@
+#include <common.h>
+#include <clk.h>
+#include <dm.h>
+#include <rtc.h>
+#include <asm/io.h>
+#include <linux/iopoll.h>
+#define STM32_RTC_TR		0x00
+#define STM32_RTC_DR		0x04
+#define STM32_RTC_ISR		0x0C
+#define STM32_RTC_PRER		0x10
+#define STM32_RTC_CR		0x18
+#define STM32_RTC_WPR		0x24
+#define STM32_RTC_SEC_SHIFT	0
+#define STM32_RTC_SEC		GENMASK(6, 0)
+#define STM32_RTC_MIN_SHIFT	8
+#define STM32_RTC_MIN		GENMASK(14, 8)
+#define STM32_RTC_HOUR_SHIFT	16
+#define STM32_RTC_HOUR		GENMASK(21, 16)
+#define STM32_RTC_DATE_SHIFT	0
+#define STM32_RTC_DATE		GENMASK(5, 0)
+#define STM32_RTC_MONTH_SHIFT	8
+#define STM32_RTC_MONTH		GENMASK(12, 8)
+#define STM32_RTC_WDAY_SHIFT	13
+#define STM32_RTC_WDAY		GENMASK(15, 13)
+#define STM32_RTC_YEAR_SHIFT	16
+#define STM32_RTC_YEAR		GENMASK(23, 16)
+#define STM32_RTC_CR_FMT	BIT(6)
+#define STM32_RTC_ISR_INITS	BIT(4)
+#define STM32_RTC_ISR_RSF	BIT(5)
+#define STM32_RTC_ISR_INITF	BIT(6)
+#define STM32_RTC_ISR_INIT	BIT(7)
+#define STM32_RTC_PRER_PRED_S_SHIFT	0
+#define STM32_RTC_PRER_PRED_S		GENMASK(14, 0)
+#define STM32_RTC_PRER_PRED_A_SHIFT	16
+#define STM32_RTC_PRER_PRED_A		GENMASK(22, 16)
+#define RTC_WPR_1ST_KEY		0xCA
+#define RTC_WPR_2ND_KEY		0x53
+#define RTC_WPR_WRONG_KEY	0xFF

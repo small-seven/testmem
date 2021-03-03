@@ -1,0 +1,6 @@
+#include "config.h"
+#include "libavutil/thread.h"
+#include "libavformat/internal.h"
+#include "avdevice.h"
+#include "libavdevice/outdev_list.c"
+#include "libavdevice/indev_list.c"

@@ -1,0 +1,10 @@
+#include <asm/arch/sysmap-apq8096.h>
+#include <env.h>
+#include <linux/arm-smccc.h>
+#include <linux/psci.h>
+#include <common.h>
+#include <dm.h>
+#include <asm/io.h>
+#include <linux/bitops.h>
+#include <asm/psci.h>
+#include <asm/gpio.h>

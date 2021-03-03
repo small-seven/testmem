@@ -1,0 +1,11 @@
+#include <common.h>
+#include <phy.h>
+#define DP83630_PHY_PAGESEL_REG		0x13
+#define DP83630_PHY_PTP_COC_REG		0x14
+#define DP83630_PHY_PTP_CLKOUT_EN	(1<<15)
+#define DP83630_PHY_RBR_REG		0x17
+#define MIIM_DP83865_LANR      0x11
+#define MIIM_DP83865_SPD_MASK  0x0018
+#define MIIM_DP83865_SPD_1000  0x0010
+#define MIIM_DP83865_SPD_100   0x0008
+#define MIIM_DP83865_DPX_FULL  0x0002

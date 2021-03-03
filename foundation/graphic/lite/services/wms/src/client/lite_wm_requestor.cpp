@@ -1,0 +1,6 @@
+#include "client/lite_wm_requestor.h"
+#include "client/lite_wms_client.h"
+#include "graphic_log.h"
+#include "input_event_info.h"
+#include "common/screen_device_proxy.h"
+#include "surface_impl.h"

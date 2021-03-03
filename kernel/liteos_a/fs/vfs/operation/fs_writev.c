@@ -1,0 +1,8 @@
+#include "sys/types.h"
+#include "sys/uio.h"
+#include "unistd.h"
+#include "string.h"
+#include "stdlib.h"
+#include "fs/fs.h"
+#include "inode/inode.h"
+#include "user_copy.h"

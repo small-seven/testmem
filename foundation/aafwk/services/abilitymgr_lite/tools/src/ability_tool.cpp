@@ -1,0 +1,14 @@
+#include "ability_tool.h"
+#include <cstdio>
+#include <cstring>
+#include <hos_errno.h>
+#include <liteipc_adapter.h>
+#include <samgr_lite.h>
+#include <securec.h>
+#include <semaphore.h>
+#include "ability_errors.h"
+#include "ability_kit_command.h"
+#include "ability_manager.h"
+#include "ability_service_interface.h"
+#include "adapter.h"
+#include "want_utils.h"

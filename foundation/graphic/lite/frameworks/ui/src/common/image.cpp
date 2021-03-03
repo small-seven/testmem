@@ -1,0 +1,8 @@
+#include "common/image.h"
+#include "common/image_decode_ability.h"
+#include "draw/draw_image.h"
+#include "graphic_log.h"
+#include "imgdecode/cache_manager.h"
+#include "jpeglib.h"
+#include "png.h"
+#include "securec.h"

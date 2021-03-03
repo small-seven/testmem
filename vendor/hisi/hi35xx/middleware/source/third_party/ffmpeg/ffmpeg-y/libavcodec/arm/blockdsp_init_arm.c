@@ -1,0 +1,5 @@
+#include "libavutil/attributes.h"
+#include "libavutil/cpu.h"
+#include "libavutil/arm/cpu.h"
+#include "libavcodec/blockdsp.h"
+#include "blockdsp_arm.h"

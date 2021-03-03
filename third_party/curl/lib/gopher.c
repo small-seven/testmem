@@ -1,0 +1,17 @@
+#include "curl_setup.h"
+#ifndef CURL_DISABLE_GOPHER
+#include "urldata.h"
+#include <curl/curl.h>
+#include "transfer.h"
+#include "sendf.h"
+#include "progress.h"
+#include "gopher.h"
+#include "select.h"
+#include "strdup.h"
+#include "url.h"
+#include "escape.h"
+#include "warnless.h"
+#include "curl_printf.h"
+#include "curl_memory.h"
+#include "memdebug.h"
+#endif /*CURL_DISABLE_GOPHER*/

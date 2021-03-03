@@ -1,0 +1,9 @@
+#include "app_verify_hap.h"
+#include <stdbool.h>
+#include <stdlib.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#include "app_centraldirectory.h"
+#include "app_common.h"
+#include "app_verify.h"
+#include "securec.h"

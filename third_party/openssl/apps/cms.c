@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+#include "apps.h"
+#include "progs.h"
+#ifndef OPENSSL_NO_CMS
+# include <openssl/crypto.h>
+# include <openssl/pem.h>
+# include <openssl/err.h>
+# include <openssl/x509_vfy.h>
+# include <openssl/x509v3.h>
+# include <openssl/cms.h>
+# define SMIME_OP        0x10
+# define SMIME_IP        0x20
+# define SMIME_SIGNERS   0x40
+# define SMIME_ENCRYPT           (1 | SMIME_OP)
+# define SMIME_DECRYPT           (2 | SMIME_IP)
+# define SMIME_SIGN              (3 | SMIME_OP | SMIME_SIGNERS)
+# define SMIME_VERIFY            (4 | SMIME_IP)
+# define SMIME_CMSOUT            (5 | SMIME_IP | SMIME_OP)
+# define SMIME_RESIGN            (6 | SMIME_IP | SMIME_OP | SMIME_SIGNERS)
+# define SMIME_DATAOUT           (7 | SMIME_IP)
+# define SMIME_DATA_CREATE       (8 | SMIME_OP)
+# define SMIME_DIGEST_VERIFY     (9 | SMIME_IP)
+# define SMIME_DIGEST_CREATE     (10 | SMIME_OP)
+# define SMIME_UNCOMPRESS        (11 | SMIME_IP)
+# define SMIME_COMPRESS          (12 | SMIME_OP)
+# define SMIME_ENCRYPTED_DECRYPT (13 | SMIME_IP)
+# define SMIME_ENCRYPTED_ENCRYPT (14 | SMIME_OP)
+# define SMIME_SIGN_RECEIPT      (15 | SMIME_IP | SMIME_OP)
+# define SMIME_VERIFY_RECEIPT    (16 | SMIME_IP)
+typedef struct cms_key_param_st cms_key_param;
+
+struct cms_key_param_st {
+    int idx;
+    STACK_OF(OPENSSL_STRING) *param;
+    cms_key_param *next;
+};
+typedef enum OPTION_choice {
+    OPT_ERR = -1, OPT_EOF = 0, OPT_HELP,
+    OPT_INFORM, OPT_OUTFORM, OPT_IN, OPT_OUT, OPT_ENCRYPT,
+    OPT_DECRYPT, OPT_SIGN, OPT_SIGN_RECEIPT, OPT_RESIGN,
+    OPT_VERIFY, OPT_VERIFY_RETCODE, OPT_VERIFY_RECEIPT,
+    OPT_CMSOUT, OPT_DATA_OUT, OPT_DATA_CREATE, OPT_DIGEST_VERIFY,
+    OPT_DIGEST_CREATE, OPT_COMPRESS, OPT_UNCOMPRESS,
+    OPT_ED_DECRYPT, OPT_ED_ENCRYPT, OPT_DEBUG_DECRYPT, OPT_TEXT,
+    OPT_ASCIICRLF, OPT_NOINTERN, OPT_NOVERIFY, OPT_NOCERTS,
+    OPT_NOATTR, OPT_NODETACH, OPT_NOSMIMECAP, OPT_BINARY, OPT_KEYID,
+    OPT_NOSIGS, OPT_NO_CONTENT_VERIFY, OPT_NO_ATTR_VERIFY, OPT_INDEF,
+    OPT_NOINDEF, OPT_CRLFEOL, OPT_NOOUT, OPT_RR_PRINT,
+    OPT_RR_ALL, OPT_RR_FIRST, OPT_RCTFORM, OPT_CERTFILE, OPT_CAFILE,
+    OPT_CAPATH, OPT_NOCAPATH, OPT_NOCAFILE,OPT_CONTENT, OPT_PRINT,
+    OPT_SECRETKEY, OPT_SECRETKEYID, OPT_PWRI_PASSWORD, OPT_ECONTENT_TYPE,
+    OPT_PASSIN, OPT_TO, OPT_FROM, OPT_SUBJECT, OPT_SIGNER, OPT_RECIP,
+    OPT_CERTSOUT, OPT_MD, OPT_INKEY, OPT_KEYFORM, OPT_KEYOPT, OPT_RR_FROM,
+    OPT_RR_TO, OPT_AES128_WRAP, OPT_AES192_WRAP, OPT_AES256_WRAP,
+    OPT_3DES_WRAP, OPT_ENGINE,
+    OPT_R_ENUM,
+    OPT_V_ENUM,
+    OPT_CIPHER
+} OPTION_CHOICE;
+# ifndef OPENSSL_NO_DES
+# endif
+# ifndef OPENSSL_NO_ENGINE
+# endif
+# ifndef OPENSSL_NO_DES
+# endif
+# ifndef OPENSSL_NO_DES
+# else
+# endif
+#endif

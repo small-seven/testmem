@@ -1,0 +1,29 @@
+#include "ecma-alloc.h"
+#include "ecma-globals.h"
+#include "ecma-gc.h"
+#include "jrt.h"
+#include "jmem.h"
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */

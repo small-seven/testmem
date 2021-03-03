@@ -1,0 +1,11 @@
+#include "utils/includes.h"
+#include "utils/common.h"
+#include "utils/eloop.h"
+#include "common/defs.h"
+#include "common/ieee802_1x_defs.h"
+#include "utils/state_machine.h"
+#include "ieee802_1x_kay.h"
+#include "ieee802_1x_secy_ops.h"
+#include "pae/ieee802_1x_cp.h"
+#define STATE_MACHINE_DATA struct ieee802_1x_cp_sm
+#define STATE_MACHINE_DEBUG_PREFIX "CP"

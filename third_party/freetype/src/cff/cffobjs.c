@@ -1,0 +1,40 @@
+#include <ft2build.h>
+#include FT_INTERNAL_DEBUG_H
+#include FT_INTERNAL_CALC_H
+#include FT_INTERNAL_STREAM_H
+#include FT_ERRORS_H
+#include FT_TRUETYPE_IDS_H
+#include FT_TRUETYPE_TAGS_H
+#include FT_INTERNAL_SFNT_H
+#include FT_DRIVER_H
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#include FT_MULTIPLE_MASTERS_H
+#include FT_SERVICE_MULTIPLE_MASTERS_H
+#include FT_SERVICE_METRICS_VARIATIONS_H
+#endif
+#include FT_INTERNAL_CFF_OBJECTS_TYPES_H
+#include "cffobjs.h"
+#include "cffload.h"
+#include "cffcmap.h"
+#include "cfferrs.h"
+#include FT_INTERNAL_POSTSCRIPT_AUX_H
+#include FT_SERVICE_CFF_TABLE_LOAD_H
+#undef  FT_COMPONENT
+#define FT_COMPONENT  cffobjs
+#ifdef TT_CONFIG_OPTION_EMBEDDED_BITMAPS
+#endif /* TT_CONFIG_OPTION_EMBEDDED_BITMAPS */
+#ifdef TT_CONFIG_OPTION_EMBEDDED_BITMAPS
+#endif /* TT_CONFIG_OPTION_EMBEDDED_BITMAPS */
+#ifdef FT_DEBUG_LEVEL_TRACE
+#endif /* FT_DEBUG_LEVEL_TRACE */
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif /* TT_CONFIG_OPTION_GX_VAR_SUPPORT */
+#if 0
+#endif
+#ifndef FT_CONFIG_OPTION_NO_GLYPH_NAMES
+#endif
+#ifdef TT_CONFIG_OPTION_GX_VAR_SUPPORT
+#endif
+#ifdef CFF_CONFIG_OPTION_OLD_ENGINE
+#else
+#endif

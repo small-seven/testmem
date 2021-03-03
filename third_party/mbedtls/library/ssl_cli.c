@@ -1,0 +1,317 @@
+#if !defined(MBEDTLS_CONFIG_FILE)
+#include "mbedtls/config.h"
+#else
+#include MBEDTLS_CONFIG_FILE
+#endif
+#if defined(MBEDTLS_SSL_CLI_C)
+#if defined(MBEDTLS_PLATFORM_C)
+#include "mbedtls/platform.h"
+#else
+#include <stdlib.h>
+#define mbedtls_calloc    calloc
+#define mbedtls_free      free
+#endif
+#include "mbedtls/debug.h"
+#include "mbedtls/ssl.h"
+#include "mbedtls/ssl_internal.h"
+#include <string.h>
+#include <stdint.h>
+#if defined(MBEDTLS_HAVE_TIME)
+#include "mbedtls/platform_time.h"
+#endif
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#include "mbedtls/platform_util.h"
+#endif
+#if defined(MBEDTLS_SSL_SERVER_NAME_INDICATION)
+#endif /* MBEDTLS_SSL_SERVER_NAME_INDICATION */
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif /* MBEDTLS_SSL_RENEGOTIATION */
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2) && \
+#if defined(MBEDTLS_RSA_C) || defined(MBEDTLS_ECDSA_C)
+#endif
+#if defined(MBEDTLS_ECDSA_C)
+#endif
+#if defined(MBEDTLS_RSA_C)
+#endif
+#if defined(MBEDTLS_ECDSA_C)
+#endif
+#if defined(MBEDTLS_RSA_C)
+#endif
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 &&
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#if defined(MBEDTLS_ECP_C)
+#else
+#endif
+#if defined(MBEDTLS_ECP_C)
+#else
+#endif
+#if defined(MBEDTLS_ECP_C)
+#endif
+#if defined(MBEDTLS_ECP_C)
+#else
+#endif
+#if defined(MBEDTLS_ECP_C)
+#endif
+#endif /* MBEDTLS_ECDH_C || MBEDTLS_ECDSA_C ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
+#if defined(MBEDTLS_SSL_MAX_FRAGMENT_LENGTH)
+#endif /* MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC)
+#endif /* MBEDTLS_SSL_TRUNCATED_HMAC */
+#if defined(MBEDTLS_SSL_ENCRYPT_THEN_MAC)
+#endif /* MBEDTLS_SSL_ENCRYPT_THEN_MAC */
+#if defined(MBEDTLS_SSL_EXTENDED_MASTER_SECRET)
+#endif /* MBEDTLS_SSL_EXTENDED_MASTER_SECRET */
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_SSL_ALPN)
+#endif /* MBEDTLS_SSL_ALPN */
+#if defined(MBEDTLS_HAVE_TIME)
+#endif
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_HAVE_TIME)
+#else
+#endif /* MBEDTLS_HAVE_TIME */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_ARC4_C)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_FALLBACK_SCSV)
+#endif
+#if defined(MBEDTLS_ZLIB_SUPPORT)
+#else
+#endif
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_SSL_SERVER_NAME_INDICATION)
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2) && \
+#endif
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif
+#if defined(MBEDTLS_SSL_MAX_FRAGMENT_LENGTH)
+#endif
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC)
+#endif
+#if defined(MBEDTLS_SSL_ENCRYPT_THEN_MAC)
+#endif
+#if defined(MBEDTLS_SSL_EXTENDED_MASTER_SECRET)
+#endif
+#if defined(MBEDTLS_SSL_ALPN)
+#endif
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif /* MBEDTLS_SSL_PROTO_DTLS */
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif /* MBEDTLS_SSL_RENEGOTIATION */
+#if defined(MBEDTLS_SSL_MAX_FRAGMENT_LENGTH)
+#endif /* MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC)
+#endif /* MBEDTLS_SSL_TRUNCATED_HMAC */
+#if defined(MBEDTLS_SSL_ENCRYPT_THEN_MAC)
+#endif /* MBEDTLS_SSL_ENCRYPT_THEN_MAC */
+#if defined(MBEDTLS_SSL_EXTENDED_MASTER_SECRET)
+#endif /* MBEDTLS_SSL_EXTENDED_MASTER_SECRET */
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif
+#endif /* MBEDTLS_ECDH_C || MBEDTLS_ECDSA_C ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
+#if defined(MBEDTLS_SSL_ALPN)
+#endif /* MBEDTLS_SSL_ALPN */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif /* MBEDTLS_SSL_PROTO_DTLS */
+#if defined(MBEDTLS_ZLIB_SUPPORT)
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif /* MBEDTLS_SSL_RENEGOTIATION */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif /* MBEDTLS_SSL_PROTO_DTLS */
+#if defined(MBEDTLS_ZLIB_SUPPORT)
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#else /* MBEDTLS_ZLIB_SUPPORT */
+#endif/* MBEDTLS_ZLIB_SUPPORT */
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_HAVE_TIME)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_ZLIB_SUPPORT)
+#endif
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif
+#if defined(MBEDTLS_SSL_MAX_FRAGMENT_LENGTH)
+#endif /* MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC)
+#endif /* MBEDTLS_SSL_TRUNCATED_HMAC */
+#if defined(MBEDTLS_SSL_ENCRYPT_THEN_MAC)
+#endif /* MBEDTLS_SSL_ENCRYPT_THEN_MAC */
+#if defined(MBEDTLS_SSL_EXTENDED_MASTER_SECRET)
+#endif /* MBEDTLS_SSL_EXTENDED_MASTER_SECRET */
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_ECDH_C) || defined(MBEDTLS_ECDSA_C) || \
+#endif /* MBEDTLS_ECDH_C || MBEDTLS_ECDSA_C ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
+#if defined(MBEDTLS_SSL_ALPN)
+#endif /* MBEDTLS_SSL_ALPN */
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif /* MBEDTLS_SSL_RENEGOTIATION */
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED) ||                       \
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED) ||                     \
+#if defined(MBEDTLS_ECDH_LEGACY_CONTEXT)
+#else
+#endif
+#if defined(MBEDTLS_ECP_C)
+#else
+#endif
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED) ||                     \
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_ENABLED) ||                           \
+#if defined(MBEDTLS_SSL_PROTO_TLS1) || defined(MBEDTLS_SSL_PROTO_TLS1_1) || \
+#endif
+#endif /* MBEDTLS_KEY_EXCHANGE_RSA_ENABLED ||
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2)
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED) ||                       \
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED ||
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED) || \
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED) ||
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_ENABLED)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED) || \
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED ||
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_PSK_ENABLED) ||                       \
+#endif /* MBEDTLS_KEY_EXCHANGE_PSK_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED) ||                       \
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED) ||                     \
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE__WITH_SERVER_SIGNATURE__ENABLED)
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2)
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
+#if defined(MBEDTLS_SSL_PROTO_SSL3) || defined(MBEDTLS_SSL_PROTO_TLS1) || \
+#endif
+#if defined(MBEDTLS_SSL_PROTO_SSL3) || defined(MBEDTLS_SSL_PROTO_TLS1) || \
+#endif /* MBEDTLS_SSL_PROTO_SSL3 || MBEDTLS_SSL_PROTO_TLS1 || \
+#if defined(MBEDTLS_SSL_PROTO_TLS1) || defined(MBEDTLS_SSL_PROTO_TLS1_1) || \
+#endif /* MBEDTLS_SSL_PROTO_TLS1 || MBEDTLS_SSL_PROTO_TLS1_1 || \
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#endif /* MBEDTLS_KEY_EXCHANGE__WITH_SERVER_SIGNATURE__ENABLED */
+#if ! defined(MBEDTLS_KEY_EXCHANGE__CERT_REQ_ALLOWED__ENABLED)
+#else /* MBEDTLS_KEY_EXCHANGE__CERT_REQ_ALLOWED__ENABLED */
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2)
+#if defined(MBEDTLS_DEBUG_C)
+#endif
+#if defined(MBEDTLS_DEBUG_C)
+#endif
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
+#endif /* MBEDTLS_KEY_EXCHANGE__CERT_REQ_ALLOWED__ENABLED */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED) ||                     \
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED ||
+#if defined(MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED)
+#if defined(MBEDTLS_KEY_EXCHANGE_PSK_ENABLED)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED)
+#endif
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED */
+#endif /* MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_RSA_ENABLED */
+#if !defined(MBEDTLS_KEY_EXCHANGE_RSA_ENABLED)       && \
+#else
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL_PROTO_SSL3) || defined(MBEDTLS_SSL_PROTO_TLS1) || \
+#endif /* MBEDTLS_SSL_PROTO_SSL3 || MBEDTLS_SSL_PROTO_TLS1 || \
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2)
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#if defined(MBEDTLS_SSL__ECP_RESTARTABLE)
+#endif
+#endif /* !MBEDTLS_KEY_EXCHANGE_RSA_ENABLED &&
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif /* MBEDTLS_SSL_PROTO_DTLS */
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif
+#endif /* MBEDTLS_SSL_CLI_C */

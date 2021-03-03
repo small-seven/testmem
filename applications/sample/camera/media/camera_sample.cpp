@@ -1,0 +1,12 @@
+#include "camera_kit.h"
+#include "recorder.h"
+#include <algorithm>
+#include <cstring>
+#include <fcntl.h>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>

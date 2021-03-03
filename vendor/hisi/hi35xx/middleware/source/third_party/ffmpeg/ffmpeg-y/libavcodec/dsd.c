@@ -1,0 +1,5 @@
+#include "libavcodec/internal.h"
+#include "libavcodec/mathops.h"
+#include "avcodec.h"
+#include "dsd_tablegen.h"
+#include "dsd.h"

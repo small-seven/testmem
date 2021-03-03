@@ -1,0 +1,13 @@
+#include <common.h>
+#include <cpu.h>
+#include <dm.h>
+#include <errno.h>
+#include <asm/cpu.h>
+#include <asm/cpu_common.h>
+#include <asm/intel_regs.h>
+#include <asm/lapic.h>
+#include <asm/lpc_common.h>
+#include <asm/msr.h>
+#include <asm/mtrr.h>
+#include <asm/post.h>
+#include <asm/microcode.h>

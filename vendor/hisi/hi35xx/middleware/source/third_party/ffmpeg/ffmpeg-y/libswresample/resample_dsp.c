@@ -1,0 +1,13 @@
+#include "resample.h"
+#define TEMPLATE_RESAMPLE_S16
+#include "resample_template.c"
+#undef TEMPLATE_RESAMPLE_S16
+#define TEMPLATE_RESAMPLE_S32
+#include "resample_template.c"
+#undef TEMPLATE_RESAMPLE_S32
+#define TEMPLATE_RESAMPLE_FLT
+#include "resample_template.c"
+#undef TEMPLATE_RESAMPLE_FLT
+#define TEMPLATE_RESAMPLE_DBL
+#include "resample_template.c"
+#undef TEMPLATE_RESAMPLE_DBL

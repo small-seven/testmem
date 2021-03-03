@@ -1,0 +1,6 @@
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
+#include "hb.h"
+#include "hb-ot.h"
+#include "hb-aots-tester.h"

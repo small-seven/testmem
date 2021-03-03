@@ -1,0 +1,7 @@
+#include "esp_common.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "uart.h"
+#include "user_config.h"
+#include "jerry_run.h"
+#include "jerry-targetjs.h"

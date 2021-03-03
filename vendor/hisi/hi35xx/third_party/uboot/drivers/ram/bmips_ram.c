@@ -1,0 +1,24 @@
+#include <common.h>
+#include <dm.h>
+#include <errno.h>
+#include <ram.h>
+#include <asm/io.h>
+#define SDRAM_CFG_REG		0x0
+#define SDRAM_CFG_COL_SHIFT	4
+#define SDRAM_CFG_COL_MASK	(0x3 << SDRAM_CFG_COL_SHIFT)
+#define SDRAM_CFG_ROW_SHIFT	6
+#define SDRAM_CFG_ROW_MASK	(0x3 << SDRAM_CFG_ROW_SHIFT)
+#define SDRAM_CFG_32B_SHIFT	10
+#define SDRAM_CFG_32B_MASK	(1 << SDRAM_CFG_32B_SHIFT)
+#define SDRAM_CFG_BANK_SHIFT	13
+#define SDRAM_CFG_BANK_MASK	(1 << SDRAM_CFG_BANK_SHIFT)
+#define SDRAM_6318_SPACE_SHIFT	4
+#define SDRAM_6318_SPACE_MASK	(0xf << SDRAM_6318_SPACE_SHIFT)
+#define MEMC_CFG_REG		0x4
+#define MEMC_CFG_32B_SHIFT	1
+#define MEMC_CFG_32B_MASK	(1 << MEMC_CFG_32B_SHIFT)
+#define MEMC_CFG_COL_SHIFT	3
+#define MEMC_CFG_COL_MASK	(0x3 << MEMC_CFG_COL_SHIFT)
+#define MEMC_CFG_ROW_SHIFT	6
+#define MEMC_CFG_ROW_MASK	(0x3 << MEMC_CFG_ROW_SHIFT)
+#define DDR_CSEND_REG		0x8

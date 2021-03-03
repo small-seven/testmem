@@ -1,0 +1,9 @@
+#include <unistd.h>
+#include <signal.h>
+#include <string.h>
+#include <errno.h>
+#include <grp.h>
+#include <sys/param.h>
+#include <sys/types.h>
+#include "test.h"
+#include "compat_16.h"

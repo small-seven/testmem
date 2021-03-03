@@ -1,0 +1,6 @@
+#include "libavutil/attributes.h"
+#include "libavutil/cpu.h"
+#include "libavutil/x86/cpu.h"
+#include "libavcodec/avcodec.h"
+#include "libavcodec/hpeldsp.h"
+#include "hpeldsp.h"

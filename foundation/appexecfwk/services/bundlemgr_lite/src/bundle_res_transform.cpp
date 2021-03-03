@@ -1,0 +1,8 @@
+#include "bundle_res_transform.h"
+#include "ability_info_utils.h"
+#include "appexecfwk_errors.h"
+#include "bundle_info_utils.h"
+#include "bundle_util.h"
+#include "global.h"
+#include "log.h"
+#include "module_info_utils.h"

@@ -1,0 +1,7 @@
+#include "libavutil/avassert.h"
+#include "libavutil/intreadwrite.h"
+#include "libavcodec/png.h"
+#include "avformat.h"
+#include "flac_picture.h"
+#include "id3v2.h"
+#include "internal.h"

@@ -1,0 +1,10 @@
+#include "libavutil/attributes.h"
+#include "libavutil/avassert.h"
+#include "libavutil/common.h"
+#include "dirac_dwt.h"
+#define TEMPLATE_8bit
+#include "dirac_dwt_template.c"
+#define TEMPLATE_10bit
+#include "dirac_dwt_template.c"
+#define TEMPLATE_12bit
+#include "dirac_dwt_template.c"

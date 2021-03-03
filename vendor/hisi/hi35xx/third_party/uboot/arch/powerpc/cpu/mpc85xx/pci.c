@@ -1,0 +1,23 @@
+#include <common.h>
+#include <asm/cpm_85xx.h>
+#include <pci.h>
+#if !defined(CONFIG_FSL_PCI_INIT) && !defined(CONFIG_DM_PCI)
+#ifndef CONFIG_SYS_PCI1_MEM_BUS
+#define CONFIG_SYS_PCI1_MEM_BUS CONFIG_SYS_PCI1_MEM_BASE
+#endif
+#ifndef CONFIG_SYS_PCI1_IO_BUS
+#define CONFIG_SYS_PCI1_IO_BUS CONFIG_SYS_PCI1_IO_BASE
+#endif
+#ifndef CONFIG_SYS_PCI2_MEM_BUS
+#define CONFIG_SYS_PCI2_MEM_BUS CONFIG_SYS_PCI2_MEM_BASE
+#endif
+#ifndef CONFIG_SYS_PCI2_IO_BUS
+#define CONFIG_SYS_PCI2_IO_BUS CONFIG_SYS_PCI2_IO_BASE
+#endif
+#ifdef CONFIG_MPC85XX_PCI2
+#endif
+#if defined(CONFIG_TARGET_MPC8555CDS) || defined(CONFIG_TARGET_MPC8541CDS)
+#endif
+#ifdef CONFIG_MPC85XX_PCI2
+#endif
+#endif /* !CONFIG_FSL_PCI_INIT */

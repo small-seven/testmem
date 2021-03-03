@@ -1,0 +1,7 @@
+#include "config.h"
+#include "libavutil/attributes.h"
+#include "libavutil/cpu.h"
+#include "libavutil/float_dsp.h"
+#include "libavutil/ppc/cpu.h"
+#include "float_dsp_altivec.h"
+#include "float_dsp_vsx.h"

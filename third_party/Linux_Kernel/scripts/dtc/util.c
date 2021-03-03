@@ -1,0 +1,12 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <assert.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "libfdt.h"
+#include "util.h"
+#include "version_gen.h"

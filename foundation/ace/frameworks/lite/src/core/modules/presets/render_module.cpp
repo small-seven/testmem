@@ -1,0 +1,7 @@
+#include "presets/render_module.h"
+#include "ace_log.h"
+#include "component_factory.h"
+#include "component_utils.h"
+#include "directive/descriptor_utils.h"
+#include "js_app_context.h"
+#include "js_profiler.h"

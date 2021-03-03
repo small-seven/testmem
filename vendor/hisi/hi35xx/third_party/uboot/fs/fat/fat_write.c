@@ -1,0 +1,10 @@
+#include <common.h>
+#include <command.h>
+#include <config.h>
+#include <fat.h>
+#include <asm/byteorder.h>
+#include <part.h>
+#include <linux/ctype.h>
+#include <div64.h>
+#include <linux/math64.h>
+#include "fat.c"

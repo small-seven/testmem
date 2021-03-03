@@ -1,0 +1,3 @@
+#include "ace_event_error_code.h"
+#ifdef FEATURE_ACELITE_MC_EVENT_ERROR_CODE_PRINT
+#endif // FEATURE_ACELITE_MC_EVENT_ERROR_CODE_PRINT

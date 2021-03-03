@@ -1,0 +1,7 @@
+#include "hi_fbdev.h"
+#include "color.h"
+#include "common/screen_device_proxy.h"
+#include "display_layer.h"
+#include "display_type.h"
+#include "graphic_config.h"
+#include "graphic_log.h"

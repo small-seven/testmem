@@ -1,0 +1,15 @@
+#define FT_MAKE_OPTION_SINGLE_OBJECT
+#include <ft2build.h>
+#include "pngshim.c"
+#include "sfdriver.c"
+#include "sfobjs.c"
+#include "sfwoff.c"
+#include "ttbdf.c"
+#include "ttcmap.c"
+#include "ttcolr.c"
+#include "ttcpal.c"
+#include "ttkern.c"
+#include "ttload.c"
+#include "ttmtx.c"
+#include "ttpost.c"
+#include "ttsbit.c"

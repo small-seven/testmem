@@ -1,0 +1,12 @@
+#include <common.h>
+#include <cpu.h>
+#include <dm.h>
+#include <errno.h>
+#include <fdtdec.h>
+#include <asm/cpu.h>
+#include <asm/irq.h>
+#include <asm/ioapic.h>
+#include <asm/lapic.h>
+#include <asm/mpspec.h>
+#include <asm/tables.h>
+#include <dm/uclass-internal.h>

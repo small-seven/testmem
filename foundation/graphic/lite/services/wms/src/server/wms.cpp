@@ -1,0 +1,6 @@
+#include "gfx_engines.h"
+#include "graphic_log.h"
+#include "hi_fbdev.h"
+#include "input_manager_service.h"
+#include "samgr_lite.h"
+#include "server/lite_wm.h"

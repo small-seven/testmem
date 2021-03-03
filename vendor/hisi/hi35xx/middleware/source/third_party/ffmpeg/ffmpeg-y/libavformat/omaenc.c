@@ -1,0 +1,6 @@
+#include "avformat.h"
+#include "avio_internal.h"
+#include "id3v2.h"
+#include "internal.h"
+#include "oma.h"
+#include "rawenc.h"

@@ -1,0 +1,10 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <signal.h>
+#include <errno.h>
+#include <string.h>
+#include "tst_test.h"
+#include "lapi/mmap.h"

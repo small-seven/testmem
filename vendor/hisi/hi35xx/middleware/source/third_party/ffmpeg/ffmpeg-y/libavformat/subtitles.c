@@ -1,0 +1,5 @@
+#include "avformat.h"
+#include "subtitles.h"
+#include "avio_internal.h"
+#include "libavutil/avassert.h"
+#include "libavutil/avstring.h"

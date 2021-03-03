@@ -1,0 +1,60 @@
+#include <common.h>
+#include <clk.h>
+#include <cpu_func.h>
+#include <dm.h>
+#include <dma-uclass.h>
+#include <memalign.h>
+#include <reset.h>
+#include <asm/io.h>
+#define DMA_RX_DESC	6
+#define DMA_TX_DESC	1
+#define DMA_CHAN_FLOWC(x)		((x) >> 1)
+#define DMA_CHAN_MAX			16
+#define DMA_CHAN_SIZE			0x10
+#define DMA_CHAN_TOUT			500
+#define DMA_CFG_REG			0x00
+#define  DMA_CFG_ENABLE_SHIFT		0
+#define  DMA_CFG_ENABLE_MASK		(1 << DMA_CFG_ENABLE_SHIFT)
+#define  DMA_CFG_FLOWC_ENABLE(x)	BIT(DMA_CHAN_FLOWC(x) + 1)
+#define  DMA_CFG_NCHANS_SHIFT		24
+#define  DMA_CFG_NCHANS_MASK		(0xf << DMA_CFG_NCHANS_SHIFT)
+#define DMA_FLOWC_THR_LO_REG(x)		(0x04 + DMA_CHAN_FLOWC(x) * 0x0c)
+#define DMA_FLOWC_THR_HI_REG(x)		(0x08 + DMA_CHAN_FLOWC(x) * 0x0c)
+#define DMA_FLOWC_ALLOC_REG(x)		(0x0c + DMA_CHAN_FLOWC(x) * 0x0c)
+#define  DMA_FLOWC_ALLOC_FORCE_SHIFT	31
+#define  DMA_FLOWC_ALLOC_FORCE_MASK	(1 << DMA_FLOWC_ALLOC_FORCE_SHIFT)
+#define DMA_RST_REG			0x34
+#define  DMA_RST_CHAN_SHIFT		0
+#define  DMA_RST_CHAN_MASK(x)		(1 << x)
+#define DMAC_CFG_REG(x)			(DMA_CHAN_SIZE * (x) + 0x00)
+#define  DMAC_CFG_ENABLE_SHIFT		0
+#define  DMAC_CFG_ENABLE_MASK		(1 << DMAC_CFG_ENABLE_SHIFT)
+#define  DMAC_CFG_PKT_HALT_SHIFT	1
+#define  DMAC_CFG_PKT_HALT_MASK		(1 << DMAC_CFG_PKT_HALT_SHIFT)
+#define  DMAC_CFG_BRST_HALT_SHIFT	2
+#define  DMAC_CFG_BRST_HALT_MASK	(1 << DMAC_CFG_BRST_HALT_SHIFT)
+#define DMAC_BURST_REG(x)		(DMA_CHAN_SIZE * (x) + 0x0c)
+#define DMAS_RSTART_REG(x)		(DMA_CHAN_SIZE * (x) + 0x00)
+#define DMAS_STATE_DATA_REG(x)		(DMA_CHAN_SIZE * (x) + 0x04)
+#define DMAS_DESC_LEN_STATUS_REG(x)	(DMA_CHAN_SIZE * (x) + 0x08)
+#define DMAS_DESC_BASE_BUFPTR_REG(x)	(DMA_CHAN_SIZE * (x) + 0x0c)
+#define DMAD_ST_CRC_SHIFT		8
+#define DMAD_ST_CRC_MASK		(1 << DMAD_ST_CRC_SHIFT)
+#define DMAD_ST_WRAP_SHIFT		12
+#define DMAD_ST_WRAP_MASK		(1 << DMAD_ST_WRAP_SHIFT)
+#define DMAD_ST_SOP_SHIFT		13
+#define DMAD_ST_SOP_MASK		(1 << DMAD_ST_SOP_SHIFT)
+#define DMAD_ST_EOP_SHIFT		14
+#define DMAD_ST_EOP_MASK		(1 << DMAD_ST_EOP_SHIFT)
+#define DMAD_ST_OWN_SHIFT		15
+#define DMAD_ST_OWN_MASK		(1 << DMAD_ST_OWN_SHIFT)
+#define DMAD6348_ST_OV_ERR_SHIFT	0
+#define DMAD6348_ST_OV_ERR_MASK		(1 << DMAD6348_ST_OV_ERR_SHIFT)
+#define DMAD6348_ST_CRC_ERR_SHIFT	1
+#define DMAD6348_ST_CRC_ERR_MASK	(1 << DMAD6348_ST_CRC_ERR_SHIFT)
+#define DMAD6348_ST_RX_ERR_SHIFT	2
+#define DMAD6348_ST_RX_ERR_MASK		(1 << DMAD6348_ST_RX_ERR_SHIFT)
+#define DMAD6348_ST_OS_ERR_SHIFT	4
+#define DMAD6348_ST_OS_ERR_MASK		(1 << DMAD6348_ST_OS_ERR_SHIFT)
+#define DMAD6348_ST_UN_ERR_SHIFT	9
+#define DMAD6348_ST_UN_ERR_MASK		(1 << DMAD6348_ST_UN_ERR_SHIFT)

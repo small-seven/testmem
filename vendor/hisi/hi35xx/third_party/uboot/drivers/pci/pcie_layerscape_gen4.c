@@ -1,0 +1,9 @@
+#include <common.h>
+#include <asm/arch/fsl_serdes.h>
+#include <pci.h>
+#include <asm/io.h>
+#include <errno.h>
+#include <malloc.h>
+#include <dm.h>
+#include <linux/sizes.h>
+#include "pcie_layerscape_gen4.h"

@@ -1,0 +1,26 @@
+#include <pthread.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <linux/dccp.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <poll.h>
+#include <time.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h>
+#include "lapi/udp.h"
+#include "lapi/dccp.h"
+#include "lapi/netinet_in.h"
+#include "lapi/posix_clocks.h"
+#include "lapi/socket.h"
+#include "lapi/tcp.h"
+#include "tst_safe_stdio.h"
+#include "tst_safe_pthread.h"
+#include "tst_test.h"
+#include "tst_safe_net.h"
+#define MAX_THREADS	10000

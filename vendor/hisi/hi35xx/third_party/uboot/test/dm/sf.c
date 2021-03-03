@@ -1,0 +1,13 @@
+#include <common.h>
+#include <command.h>
+#include <dm.h>
+#include <fdtdec.h>
+#include <mapmem.h>
+#include <os.h>
+#include <spi.h>
+#include <spi_flash.h>
+#include <asm/state.h>
+#include <asm/test.h>
+#include <dm/test.h>
+#include <dm/util.h>
+#include <test/ut.h>

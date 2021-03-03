@@ -1,0 +1,79 @@
+#include "ecma-conversion.h"
+#include "ecma-exceptions.h"
+#include "ecma-function-object.h"
+#include "ecma-helpers.h"
+#include "ecma-lex-env.h"
+#include "ecma-literal-storage.h"
+#include "jcontext.h"
+#include "jerryscript.h"
+#include "jerry-snapshot.h"
+#include "js-parser.h"
+#include "lit-char-helpers.h"
+#include "re-compiler.h"
+#if ENABLED (JERRY_SNAPSHOT_SAVE) || ENABLED (JERRY_SNAPSHOT_EXEC)
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) || ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+typedef struct
+{
+  size_t snapshot_buffer_write_offset;
+  ecma_value_t snapshot_error;
+  bool regex_found;
+  bool class_found;
+} snapshot_globals_t;
+#if !ENABLED (JERRY_NUMBER_TYPE_FLOAT64)
+#define JERRY_SNAPSHOT_MAXIMUM_WRITE_OFFSET (0x7fffff >> 1)
+#else /* ENABLED (JERRY_NUMBER_TYPE_FLOAT64) */
+#define JERRY_SNAPSHOT_MAXIMUM_WRITE_OFFSET (UINT32_MAX >> 1)
+#endif /* !ENABLED (JERRY_NUMBER_TYPE_FLOAT64) */
+#if ENABLED (JERRY_ES2015_CLASS)
+#endif /* ENABLED (JERRY_ES2015_CLASS) */
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#define BYTECODE_NO_COPY_THRESHOLD 8
+#if ENABLED (JERRY_BUILTIN_REGEXP)
+#endif /* ENABLED (JERRY_BUILTIN_REGEXP) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_MEM_STATS)
+#endif /* ENABLED (JERRY_MEM_STATS) */
+#if ENABLED (JERRY_DEBUGGER)
+#endif /* ENABLED (JERRY_DEBUGGER) */
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#if ENABLED (JERRY_LINE_INFO)
+#endif /* ENABLED (JERRY_LINE_INFO) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#else /* !ENABLED (JERRY_SNAPSHOT_SAVE) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#else /* !ENABLED (JERRY_SNAPSHOT_EXEC) */
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#else /* !ENABLED (JERRY_SNAPSHOT_SAVE) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#else /* !ENABLED (JERRY_SNAPSHOT_SAVE) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_SAVE)
+#else /* !ENABLED (JERRY_SNAPSHOT_SAVE) */
+#endif /* ENABLED (JERRY_SNAPSHOT_SAVE) */
+#if ENABLED (JERRY_SNAPSHOT_EXEC)
+#else /* !ENABLED (JERRY_SNAPSHOT_EXEC) */
+#endif /* ENABLED (JERRY_SNAPSHOT_EXEC) */

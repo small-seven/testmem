@@ -1,0 +1,684 @@
+#if !defined(MBEDTLS_CONFIG_FILE)
+#include "mbedtls/config.h"
+#else
+#include MBEDTLS_CONFIG_FILE
+#endif
+#if defined(MBEDTLS_PLATFORM_C)
+#include "mbedtls/platform.h"
+#else
+#include <stdio.h>
+#define mbedtls_printf printf
+#endif /* MBEDTLS_PLATFORM_C */
+#include "mbedtls/aes.h"
+#include "mbedtls/aesni.h"
+#include "mbedtls/arc4.h"
+#include "mbedtls/aria.h"
+#include "mbedtls/asn1.h"
+#include "mbedtls/asn1write.h"
+#include "mbedtls/base64.h"
+#include "mbedtls/bignum.h"
+#include "mbedtls/blowfish.h"
+#include "mbedtls/camellia.h"
+#include "mbedtls/ccm.h"
+#include "mbedtls/certs.h"
+#include "mbedtls/chacha20.h"
+#include "mbedtls/chachapoly.h"
+#include "mbedtls/cipher.h"
+#include "mbedtls/cmac.h"
+#include "mbedtls/ctr_drbg.h"
+#include "mbedtls/debug.h"
+#include "mbedtls/des.h"
+#include "mbedtls/dhm.h"
+#include "mbedtls/ecdh.h"
+#include "mbedtls/ecdsa.h"
+#include "mbedtls/ecjpake.h"
+#include "mbedtls/ecp.h"
+#include "mbedtls/entropy.h"
+#include "mbedtls/entropy_poll.h"
+#include "mbedtls/error.h"
+#include "mbedtls/gcm.h"
+#include "mbedtls/havege.h"
+#include "mbedtls/hkdf.h"
+#include "mbedtls/hmac_drbg.h"
+#include "mbedtls/md.h"
+#include "mbedtls/md2.h"
+#include "mbedtls/md4.h"
+#include "mbedtls/md5.h"
+#include "mbedtls/memory_buffer_alloc.h"
+#include "mbedtls/net_sockets.h"
+#include "mbedtls/nist_kw.h"
+#include "mbedtls/oid.h"
+#include "mbedtls/padlock.h"
+#include "mbedtls/pem.h"
+#include "mbedtls/pk.h"
+#include "mbedtls/pkcs11.h"
+#include "mbedtls/pkcs12.h"
+#include "mbedtls/pkcs5.h"
+#include "mbedtls/platform_time.h"
+#include "mbedtls/platform_util.h"
+#include "mbedtls/poly1305.h"
+#include "mbedtls/ripemd160.h"
+#include "mbedtls/rsa.h"
+#include "mbedtls/sha1.h"
+#include "mbedtls/sha256.h"
+#include "mbedtls/sha512.h"
+#include "mbedtls/ssl.h"
+#include "mbedtls/ssl_cache.h"
+#include "mbedtls/ssl_ciphersuites.h"
+#include "mbedtls/ssl_cookie.h"
+#include "mbedtls/ssl_internal.h"
+#include "mbedtls/ssl_ticket.h"
+#include "mbedtls/threading.h"
+#include "mbedtls/timing.h"
+#include "mbedtls/version.h"
+#include "mbedtls/x509.h"
+#include "mbedtls/x509_crl.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/x509_csr.h"
+#include "mbedtls/xtea.h"
+#include <string.h>
+#define MACRO_EXPANSION_TO_STR(macro)   MACRO_NAME_TO_STR(macro)
+#define MACRO_NAME_TO_STR(macro)                                        \
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable:4003)
+#endif /* _MSC_VER */
+#if defined(MBEDTLS_HAVE_ASM)
+#endif /* MBEDTLS_HAVE_ASM */
+#if defined(MBEDTLS_NO_UDBL_DIVISION)
+#endif /* MBEDTLS_NO_UDBL_DIVISION */
+#if defined(MBEDTLS_NO_64BIT_MULTIPLICATION)
+#endif /* MBEDTLS_NO_64BIT_MULTIPLICATION */
+#if defined(MBEDTLS_HAVE_SSE2)
+#endif /* MBEDTLS_HAVE_SSE2 */
+#if defined(MBEDTLS_HAVE_TIME)
+#endif /* MBEDTLS_HAVE_TIME */
+#if defined(MBEDTLS_HAVE_TIME_DATE)
+#endif /* MBEDTLS_HAVE_TIME_DATE */
+#if defined(MBEDTLS_PLATFORM_MEMORY)
+#endif /* MBEDTLS_PLATFORM_MEMORY */
+#if defined(MBEDTLS_PLATFORM_NO_STD_FUNCTIONS)
+#endif /* MBEDTLS_PLATFORM_NO_STD_FUNCTIONS */
+#if defined(MBEDTLS_PLATFORM_EXIT_ALT)
+#endif /* MBEDTLS_PLATFORM_EXIT_ALT */
+#if defined(MBEDTLS_PLATFORM_TIME_ALT)
+#endif /* MBEDTLS_PLATFORM_TIME_ALT */
+#if defined(MBEDTLS_PLATFORM_FPRINTF_ALT)
+#endif /* MBEDTLS_PLATFORM_FPRINTF_ALT */
+#if defined(MBEDTLS_PLATFORM_PRINTF_ALT)
+#endif /* MBEDTLS_PLATFORM_PRINTF_ALT */
+#if defined(MBEDTLS_PLATFORM_SNPRINTF_ALT)
+#endif /* MBEDTLS_PLATFORM_SNPRINTF_ALT */
+#if defined(MBEDTLS_PLATFORM_NV_SEED_ALT)
+#endif /* MBEDTLS_PLATFORM_NV_SEED_ALT */
+#if defined(MBEDTLS_PLATFORM_SETUP_TEARDOWN_ALT)
+#endif /* MBEDTLS_PLATFORM_SETUP_TEARDOWN_ALT */
+#if defined(MBEDTLS_DEPRECATED_WARNING)
+#endif /* MBEDTLS_DEPRECATED_WARNING */
+#if defined(MBEDTLS_DEPRECATED_REMOVED)
+#endif /* MBEDTLS_DEPRECATED_REMOVED */
+#if defined(MBEDTLS_CHECK_PARAMS)
+#endif /* MBEDTLS_CHECK_PARAMS */
+#if defined(MBEDTLS_CHECK_PARAMS_ASSERT)
+#endif /* MBEDTLS_CHECK_PARAMS_ASSERT */
+#if defined(MBEDTLS_TIMING_ALT)
+#endif /* MBEDTLS_TIMING_ALT */
+#if defined(MBEDTLS_AES_ALT)
+#endif /* MBEDTLS_AES_ALT */
+#if defined(MBEDTLS_ARC4_ALT)
+#endif /* MBEDTLS_ARC4_ALT */
+#if defined(MBEDTLS_ARIA_ALT)
+#endif /* MBEDTLS_ARIA_ALT */
+#if defined(MBEDTLS_BLOWFISH_ALT)
+#endif /* MBEDTLS_BLOWFISH_ALT */
+#if defined(MBEDTLS_CAMELLIA_ALT)
+#endif /* MBEDTLS_CAMELLIA_ALT */
+#if defined(MBEDTLS_CCM_ALT)
+#endif /* MBEDTLS_CCM_ALT */
+#if defined(MBEDTLS_CHACHA20_ALT)
+#endif /* MBEDTLS_CHACHA20_ALT */
+#if defined(MBEDTLS_CHACHAPOLY_ALT)
+#endif /* MBEDTLS_CHACHAPOLY_ALT */
+#if defined(MBEDTLS_CMAC_ALT)
+#endif /* MBEDTLS_CMAC_ALT */
+#if defined(MBEDTLS_DES_ALT)
+#endif /* MBEDTLS_DES_ALT */
+#if defined(MBEDTLS_DHM_ALT)
+#endif /* MBEDTLS_DHM_ALT */
+#if defined(MBEDTLS_ECJPAKE_ALT)
+#endif /* MBEDTLS_ECJPAKE_ALT */
+#if defined(MBEDTLS_GCM_ALT)
+#endif /* MBEDTLS_GCM_ALT */
+#if defined(MBEDTLS_NIST_KW_ALT)
+#endif /* MBEDTLS_NIST_KW_ALT */
+#if defined(MBEDTLS_MD2_ALT)
+#endif /* MBEDTLS_MD2_ALT */
+#if defined(MBEDTLS_MD4_ALT)
+#endif /* MBEDTLS_MD4_ALT */
+#if defined(MBEDTLS_MD5_ALT)
+#endif /* MBEDTLS_MD5_ALT */
+#if defined(MBEDTLS_POLY1305_ALT)
+#endif /* MBEDTLS_POLY1305_ALT */
+#if defined(MBEDTLS_RIPEMD160_ALT)
+#endif /* MBEDTLS_RIPEMD160_ALT */
+#if defined(MBEDTLS_RSA_ALT)
+#endif /* MBEDTLS_RSA_ALT */
+#if defined(MBEDTLS_SHA1_ALT)
+#endif /* MBEDTLS_SHA1_ALT */
+#if defined(MBEDTLS_SHA256_ALT)
+#endif /* MBEDTLS_SHA256_ALT */
+#if defined(MBEDTLS_SHA512_ALT)
+#endif /* MBEDTLS_SHA512_ALT */
+#if defined(MBEDTLS_XTEA_ALT)
+#endif /* MBEDTLS_XTEA_ALT */
+#if defined(MBEDTLS_ECP_ALT)
+#endif /* MBEDTLS_ECP_ALT */
+#if defined(MBEDTLS_MD2_PROCESS_ALT)
+#endif /* MBEDTLS_MD2_PROCESS_ALT */
+#if defined(MBEDTLS_MD4_PROCESS_ALT)
+#endif /* MBEDTLS_MD4_PROCESS_ALT */
+#if defined(MBEDTLS_MD5_PROCESS_ALT)
+#endif /* MBEDTLS_MD5_PROCESS_ALT */
+#if defined(MBEDTLS_RIPEMD160_PROCESS_ALT)
+#endif /* MBEDTLS_RIPEMD160_PROCESS_ALT */
+#if defined(MBEDTLS_SHA1_PROCESS_ALT)
+#endif /* MBEDTLS_SHA1_PROCESS_ALT */
+#if defined(MBEDTLS_SHA256_PROCESS_ALT)
+#endif /* MBEDTLS_SHA256_PROCESS_ALT */
+#if defined(MBEDTLS_SHA512_PROCESS_ALT)
+#endif /* MBEDTLS_SHA512_PROCESS_ALT */
+#if defined(MBEDTLS_DES_SETKEY_ALT)
+#endif /* MBEDTLS_DES_SETKEY_ALT */
+#if defined(MBEDTLS_DES_CRYPT_ECB_ALT)
+#endif /* MBEDTLS_DES_CRYPT_ECB_ALT */
+#if defined(MBEDTLS_DES3_CRYPT_ECB_ALT)
+#endif /* MBEDTLS_DES3_CRYPT_ECB_ALT */
+#if defined(MBEDTLS_AES_SETKEY_ENC_ALT)
+#endif /* MBEDTLS_AES_SETKEY_ENC_ALT */
+#if defined(MBEDTLS_AES_SETKEY_DEC_ALT)
+#endif /* MBEDTLS_AES_SETKEY_DEC_ALT */
+#if defined(MBEDTLS_AES_ENCRYPT_ALT)
+#endif /* MBEDTLS_AES_ENCRYPT_ALT */
+#if defined(MBEDTLS_AES_DECRYPT_ALT)
+#endif /* MBEDTLS_AES_DECRYPT_ALT */
+#if defined(MBEDTLS_ECDH_GEN_PUBLIC_ALT)
+#endif /* MBEDTLS_ECDH_GEN_PUBLIC_ALT */
+#if defined(MBEDTLS_ECDH_COMPUTE_SHARED_ALT)
+#endif /* MBEDTLS_ECDH_COMPUTE_SHARED_ALT */
+#if defined(MBEDTLS_ECDSA_VERIFY_ALT)
+#endif /* MBEDTLS_ECDSA_VERIFY_ALT */
+#if defined(MBEDTLS_ECDSA_SIGN_ALT)
+#endif /* MBEDTLS_ECDSA_SIGN_ALT */
+#if defined(MBEDTLS_ECDSA_GENKEY_ALT)
+#endif /* MBEDTLS_ECDSA_GENKEY_ALT */
+#if defined(MBEDTLS_ECP_INTERNAL_ALT)
+#endif /* MBEDTLS_ECP_INTERNAL_ALT */
+#if defined(MBEDTLS_ECP_RANDOMIZE_JAC_ALT)
+#endif /* MBEDTLS_ECP_RANDOMIZE_JAC_ALT */
+#if defined(MBEDTLS_ECP_ADD_MIXED_ALT)
+#endif /* MBEDTLS_ECP_ADD_MIXED_ALT */
+#if defined(MBEDTLS_ECP_DOUBLE_JAC_ALT)
+#endif /* MBEDTLS_ECP_DOUBLE_JAC_ALT */
+#if defined(MBEDTLS_ECP_NORMALIZE_JAC_MANY_ALT)
+#endif /* MBEDTLS_ECP_NORMALIZE_JAC_MANY_ALT */
+#if defined(MBEDTLS_ECP_NORMALIZE_JAC_ALT)
+#endif /* MBEDTLS_ECP_NORMALIZE_JAC_ALT */
+#if defined(MBEDTLS_ECP_DOUBLE_ADD_MXZ_ALT)
+#endif /* MBEDTLS_ECP_DOUBLE_ADD_MXZ_ALT */
+#if defined(MBEDTLS_ECP_RANDOMIZE_MXZ_ALT)
+#endif /* MBEDTLS_ECP_RANDOMIZE_MXZ_ALT */
+#if defined(MBEDTLS_ECP_NORMALIZE_MXZ_ALT)
+#endif /* MBEDTLS_ECP_NORMALIZE_MXZ_ALT */
+#if defined(MBEDTLS_TEST_NULL_ENTROPY)
+#endif /* MBEDTLS_TEST_NULL_ENTROPY */
+#if defined(MBEDTLS_ENTROPY_HARDWARE_ALT)
+#endif /* MBEDTLS_ENTROPY_HARDWARE_ALT */
+#if defined(MBEDTLS_AES_ROM_TABLES)
+#endif /* MBEDTLS_AES_ROM_TABLES */
+#if defined(MBEDTLS_AES_FEWER_TABLES)
+#endif /* MBEDTLS_AES_FEWER_TABLES */
+#if defined(MBEDTLS_CAMELLIA_SMALL_MEMORY)
+#endif /* MBEDTLS_CAMELLIA_SMALL_MEMORY */
+#if defined(MBEDTLS_CIPHER_MODE_CBC)
+#endif /* MBEDTLS_CIPHER_MODE_CBC */
+#if defined(MBEDTLS_CIPHER_MODE_CFB)
+#endif /* MBEDTLS_CIPHER_MODE_CFB */
+#if defined(MBEDTLS_CIPHER_MODE_CTR)
+#endif /* MBEDTLS_CIPHER_MODE_CTR */
+#if defined(MBEDTLS_CIPHER_MODE_OFB)
+#endif /* MBEDTLS_CIPHER_MODE_OFB */
+#if defined(MBEDTLS_CIPHER_MODE_XTS)
+#endif /* MBEDTLS_CIPHER_MODE_XTS */
+#if defined(MBEDTLS_CIPHER_NULL_CIPHER)
+#endif /* MBEDTLS_CIPHER_NULL_CIPHER */
+#if defined(MBEDTLS_CIPHER_PADDING_PKCS7)
+#endif /* MBEDTLS_CIPHER_PADDING_PKCS7 */
+#if defined(MBEDTLS_CIPHER_PADDING_ONE_AND_ZEROS)
+#endif /* MBEDTLS_CIPHER_PADDING_ONE_AND_ZEROS */
+#if defined(MBEDTLS_CIPHER_PADDING_ZEROS_AND_LEN)
+#endif /* MBEDTLS_CIPHER_PADDING_ZEROS_AND_LEN */
+#if defined(MBEDTLS_CIPHER_PADDING_ZEROS)
+#endif /* MBEDTLS_CIPHER_PADDING_ZEROS */
+#if defined(MBEDTLS_CTR_DRBG_USE_128_BIT_KEY)
+#endif /* MBEDTLS_CTR_DRBG_USE_128_BIT_KEY */
+#if defined(MBEDTLS_ENABLE_WEAK_CIPHERSUITES)
+#endif /* MBEDTLS_ENABLE_WEAK_CIPHERSUITES */
+#if defined(MBEDTLS_REMOVE_ARC4_CIPHERSUITES)
+#endif /* MBEDTLS_REMOVE_ARC4_CIPHERSUITES */
+#if defined(MBEDTLS_REMOVE_3DES_CIPHERSUITES)
+#endif /* MBEDTLS_REMOVE_3DES_CIPHERSUITES */
+#if defined(MBEDTLS_ECP_DP_SECP192R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP192R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP224R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP224R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP256R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP256R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP384R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP384R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP521R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP521R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP192K1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP192K1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP224K1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP224K1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_SECP256K1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_SECP256K1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_BP256R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_BP256R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_BP384R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_BP384R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_BP512R1_ENABLED)
+#endif /* MBEDTLS_ECP_DP_BP512R1_ENABLED */
+#if defined(MBEDTLS_ECP_DP_CURVE25519_ENABLED)
+#endif /* MBEDTLS_ECP_DP_CURVE25519_ENABLED */
+#if defined(MBEDTLS_ECP_DP_CURVE448_ENABLED)
+#endif /* MBEDTLS_ECP_DP_CURVE448_ENABLED */
+#if defined(MBEDTLS_ECP_NIST_OPTIM)
+#endif /* MBEDTLS_ECP_NIST_OPTIM */
+#if defined(MBEDTLS_ECP_RESTARTABLE)
+#endif /* MBEDTLS_ECP_RESTARTABLE */
+#if defined(MBEDTLS_ECDSA_DETERMINISTIC)
+#endif /* MBEDTLS_ECDSA_DETERMINISTIC */
+#if defined(MBEDTLS_KEY_EXCHANGE_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDHE_ECDSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDHE_ECDSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDH_ECDSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDH_ECDSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED */
+#if defined(MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED)
+#endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
+#if defined(MBEDTLS_PK_PARSE_EC_EXTENDED)
+#endif /* MBEDTLS_PK_PARSE_EC_EXTENDED */
+#if defined(MBEDTLS_ERROR_STRERROR_DUMMY)
+#endif /* MBEDTLS_ERROR_STRERROR_DUMMY */
+#if defined(MBEDTLS_GENPRIME)
+#endif /* MBEDTLS_GENPRIME */
+#if defined(MBEDTLS_FS_IO)
+#endif /* MBEDTLS_FS_IO */
+#if defined(MBEDTLS_NO_DEFAULT_ENTROPY_SOURCES)
+#endif /* MBEDTLS_NO_DEFAULT_ENTROPY_SOURCES */
+#if defined(MBEDTLS_NO_PLATFORM_ENTROPY)
+#endif /* MBEDTLS_NO_PLATFORM_ENTROPY */
+#if defined(MBEDTLS_ENTROPY_FORCE_SHA256)
+#endif /* MBEDTLS_ENTROPY_FORCE_SHA256 */
+#if defined(MBEDTLS_ENTROPY_NV_SEED)
+#endif /* MBEDTLS_ENTROPY_NV_SEED */
+#if defined(MBEDTLS_MEMORY_DEBUG)
+#endif /* MBEDTLS_MEMORY_DEBUG */
+#if defined(MBEDTLS_MEMORY_BACKTRACE)
+#endif /* MBEDTLS_MEMORY_BACKTRACE */
+#if defined(MBEDTLS_PK_RSA_ALT_SUPPORT)
+#endif /* MBEDTLS_PK_RSA_ALT_SUPPORT */
+#if defined(MBEDTLS_PKCS1_V15)
+#endif /* MBEDTLS_PKCS1_V15 */
+#if defined(MBEDTLS_PKCS1_V21)
+#endif /* MBEDTLS_PKCS1_V21 */
+#if defined(MBEDTLS_RSA_NO_CRT)
+#endif /* MBEDTLS_RSA_NO_CRT */
+#if defined(MBEDTLS_SELF_TEST)
+#endif /* MBEDTLS_SELF_TEST */
+#if defined(MBEDTLS_SHA256_SMALLER)
+#endif /* MBEDTLS_SHA256_SMALLER */
+#if defined(MBEDTLS_SSL_ALL_ALERT_MESSAGES)
+#endif /* MBEDTLS_SSL_ALL_ALERT_MESSAGES */
+#if defined(MBEDTLS_SSL_ASYNC_PRIVATE)
+#endif /* MBEDTLS_SSL_ASYNC_PRIVATE */
+#if defined(MBEDTLS_SSL_DEBUG_ALL)
+#endif /* MBEDTLS_SSL_DEBUG_ALL */
+#if defined(MBEDTLS_SSL_ENCRYPT_THEN_MAC)
+#endif /* MBEDTLS_SSL_ENCRYPT_THEN_MAC */
+#if defined(MBEDTLS_SSL_EXTENDED_MASTER_SECRET)
+#endif /* MBEDTLS_SSL_EXTENDED_MASTER_SECRET */
+#if defined(MBEDTLS_SSL_FALLBACK_SCSV)
+#endif /* MBEDTLS_SSL_FALLBACK_SCSV */
+#if defined(MBEDTLS_SSL_HW_RECORD_ACCEL)
+#endif /* MBEDTLS_SSL_HW_RECORD_ACCEL */
+#if defined(MBEDTLS_SSL_CBC_RECORD_SPLITTING)
+#endif /* MBEDTLS_SSL_CBC_RECORD_SPLITTING */
+#if defined(MBEDTLS_SSL_RENEGOTIATION)
+#endif /* MBEDTLS_SSL_RENEGOTIATION */
+#if defined(MBEDTLS_SSL_SRV_SUPPORT_SSLV2_CLIENT_HELLO)
+#endif /* MBEDTLS_SSL_SRV_SUPPORT_SSLV2_CLIENT_HELLO */
+#if defined(MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE)
+#endif /* MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE */
+#if defined(MBEDTLS_SSL_MAX_FRAGMENT_LENGTH)
+#endif /* MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
+#if defined(MBEDTLS_SSL_PROTO_SSL3)
+#endif /* MBEDTLS_SSL_PROTO_SSL3 */
+#if defined(MBEDTLS_SSL_PROTO_TLS1)
+#endif /* MBEDTLS_SSL_PROTO_TLS1 */
+#if defined(MBEDTLS_SSL_PROTO_TLS1_1)
+#endif /* MBEDTLS_SSL_PROTO_TLS1_1 */
+#if defined(MBEDTLS_SSL_PROTO_TLS1_2)
+#endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
+#if defined(MBEDTLS_SSL_PROTO_DTLS)
+#endif /* MBEDTLS_SSL_PROTO_DTLS */
+#if defined(MBEDTLS_SSL_ALPN)
+#endif /* MBEDTLS_SSL_ALPN */
+#if defined(MBEDTLS_SSL_DTLS_ANTI_REPLAY)
+#endif /* MBEDTLS_SSL_DTLS_ANTI_REPLAY */
+#if defined(MBEDTLS_SSL_DTLS_HELLO_VERIFY)
+#endif /* MBEDTLS_SSL_DTLS_HELLO_VERIFY */
+#if defined(MBEDTLS_SSL_DTLS_CLIENT_PORT_REUSE)
+#endif /* MBEDTLS_SSL_DTLS_CLIENT_PORT_REUSE */
+#if defined(MBEDTLS_SSL_DTLS_BADMAC_LIMIT)
+#endif /* MBEDTLS_SSL_DTLS_BADMAC_LIMIT */
+#if defined(MBEDTLS_SSL_SESSION_TICKETS)
+#endif /* MBEDTLS_SSL_SESSION_TICKETS */
+#if defined(MBEDTLS_SSL_EXPORT_KEYS)
+#endif /* MBEDTLS_SSL_EXPORT_KEYS */
+#if defined(MBEDTLS_SSL_SERVER_NAME_INDICATION)
+#endif /* MBEDTLS_SSL_SERVER_NAME_INDICATION */
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC)
+#endif /* MBEDTLS_SSL_TRUNCATED_HMAC */
+#if defined(MBEDTLS_SSL_TRUNCATED_HMAC_COMPAT)
+#endif /* MBEDTLS_SSL_TRUNCATED_HMAC_COMPAT */
+#if defined(MBEDTLS_THREADING_ALT)
+#endif /* MBEDTLS_THREADING_ALT */
+#if defined(MBEDTLS_THREADING_PTHREAD)
+#endif /* MBEDTLS_THREADING_PTHREAD */
+#if defined(MBEDTLS_VERSION_FEATURES)
+#endif /* MBEDTLS_VERSION_FEATURES */
+#if defined(MBEDTLS_X509_ALLOW_EXTENSIONS_NON_V3)
+#endif /* MBEDTLS_X509_ALLOW_EXTENSIONS_NON_V3 */
+#if defined(MBEDTLS_X509_ALLOW_UNSUPPORTED_CRITICAL_EXTENSION)
+#endif /* MBEDTLS_X509_ALLOW_UNSUPPORTED_CRITICAL_EXTENSION */
+#if defined(MBEDTLS_X509_CHECK_KEY_USAGE)
+#endif /* MBEDTLS_X509_CHECK_KEY_USAGE */
+#if defined(MBEDTLS_X509_CHECK_EXTENDED_KEY_USAGE)
+#endif /* MBEDTLS_X509_CHECK_EXTENDED_KEY_USAGE */
+#if defined(MBEDTLS_X509_RSASSA_PSS_SUPPORT)
+#endif /* MBEDTLS_X509_RSASSA_PSS_SUPPORT */
+#if defined(MBEDTLS_ZLIB_SUPPORT)
+#endif /* MBEDTLS_ZLIB_SUPPORT */
+#if defined(MBEDTLS_AESNI_C)
+#endif /* MBEDTLS_AESNI_C */
+#if defined(MBEDTLS_AES_C)
+#endif /* MBEDTLS_AES_C */
+#if defined(MBEDTLS_ARC4_C)
+#endif /* MBEDTLS_ARC4_C */
+#if defined(MBEDTLS_ASN1_PARSE_C)
+#endif /* MBEDTLS_ASN1_PARSE_C */
+#if defined(MBEDTLS_ASN1_WRITE_C)
+#endif /* MBEDTLS_ASN1_WRITE_C */
+#if defined(MBEDTLS_BASE64_C)
+#endif /* MBEDTLS_BASE64_C */
+#if defined(MBEDTLS_BIGNUM_C)
+#endif /* MBEDTLS_BIGNUM_C */
+#if defined(MBEDTLS_BLOWFISH_C)
+#endif /* MBEDTLS_BLOWFISH_C */
+#if defined(MBEDTLS_CAMELLIA_C)
+#endif /* MBEDTLS_CAMELLIA_C */
+#if defined(MBEDTLS_ARIA_C)
+#endif /* MBEDTLS_ARIA_C */
+#if defined(MBEDTLS_CCM_C)
+#endif /* MBEDTLS_CCM_C */
+#if defined(MBEDTLS_CERTS_C)
+#endif /* MBEDTLS_CERTS_C */
+#if defined(MBEDTLS_CHACHA20_C)
+#endif /* MBEDTLS_CHACHA20_C */
+#if defined(MBEDTLS_CHACHAPOLY_C)
+#endif /* MBEDTLS_CHACHAPOLY_C */
+#if defined(MBEDTLS_CIPHER_C)
+#endif /* MBEDTLS_CIPHER_C */
+#if defined(MBEDTLS_CMAC_C)
+#endif /* MBEDTLS_CMAC_C */
+#if defined(MBEDTLS_CTR_DRBG_C)
+#endif /* MBEDTLS_CTR_DRBG_C */
+#if defined(MBEDTLS_DEBUG_C)
+#endif /* MBEDTLS_DEBUG_C */
+#if defined(MBEDTLS_DES_C)
+#endif /* MBEDTLS_DES_C */
+#if defined(MBEDTLS_DHM_C)
+#endif /* MBEDTLS_DHM_C */
+#if defined(MBEDTLS_ECDH_C)
+#endif /* MBEDTLS_ECDH_C */
+#if defined(MBEDTLS_ECDSA_C)
+#endif /* MBEDTLS_ECDSA_C */
+#if defined(MBEDTLS_ECJPAKE_C)
+#endif /* MBEDTLS_ECJPAKE_C */
+#if defined(MBEDTLS_ECP_C)
+#endif /* MBEDTLS_ECP_C */
+#if defined(MBEDTLS_ENTROPY_C)
+#endif /* MBEDTLS_ENTROPY_C */
+#if defined(MBEDTLS_ERROR_C)
+#endif /* MBEDTLS_ERROR_C */
+#if defined(MBEDTLS_GCM_C)
+#endif /* MBEDTLS_GCM_C */
+#if defined(MBEDTLS_HAVEGE_C)
+#endif /* MBEDTLS_HAVEGE_C */
+#if defined(MBEDTLS_HKDF_C)
+#endif /* MBEDTLS_HKDF_C */
+#if defined(MBEDTLS_HMAC_DRBG_C)
+#endif /* MBEDTLS_HMAC_DRBG_C */
+#if defined(MBEDTLS_NIST_KW_C)
+#endif /* MBEDTLS_NIST_KW_C */
+#if defined(MBEDTLS_MD_C)
+#endif /* MBEDTLS_MD_C */
+#if defined(MBEDTLS_MD2_C)
+#endif /* MBEDTLS_MD2_C */
+#if defined(MBEDTLS_MD4_C)
+#endif /* MBEDTLS_MD4_C */
+#if defined(MBEDTLS_MD5_C)
+#endif /* MBEDTLS_MD5_C */
+#if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
+#endif /* MBEDTLS_MEMORY_BUFFER_ALLOC_C */
+#if defined(MBEDTLS_NET_C)
+#endif /* MBEDTLS_NET_C */
+#if defined(MBEDTLS_OID_C)
+#endif /* MBEDTLS_OID_C */
+#if defined(MBEDTLS_PADLOCK_C)
+#endif /* MBEDTLS_PADLOCK_C */
+#if defined(MBEDTLS_PEM_PARSE_C)
+#endif /* MBEDTLS_PEM_PARSE_C */
+#if defined(MBEDTLS_PEM_WRITE_C)
+#endif /* MBEDTLS_PEM_WRITE_C */
+#if defined(MBEDTLS_PK_C)
+#endif /* MBEDTLS_PK_C */
+#if defined(MBEDTLS_PK_PARSE_C)
+#endif /* MBEDTLS_PK_PARSE_C */
+#if defined(MBEDTLS_PK_WRITE_C)
+#endif /* MBEDTLS_PK_WRITE_C */
+#if defined(MBEDTLS_PKCS5_C)
+#endif /* MBEDTLS_PKCS5_C */
+#if defined(MBEDTLS_PKCS11_C)
+#endif /* MBEDTLS_PKCS11_C */
+#if defined(MBEDTLS_PKCS12_C)
+#endif /* MBEDTLS_PKCS12_C */
+#if defined(MBEDTLS_PLATFORM_C)
+#endif /* MBEDTLS_PLATFORM_C */
+#if defined(MBEDTLS_POLY1305_C)
+#endif /* MBEDTLS_POLY1305_C */
+#if defined(MBEDTLS_RIPEMD160_C)
+#endif /* MBEDTLS_RIPEMD160_C */
+#if defined(MBEDTLS_RSA_C)
+#endif /* MBEDTLS_RSA_C */
+#if defined(MBEDTLS_SHA1_C)
+#endif /* MBEDTLS_SHA1_C */
+#if defined(MBEDTLS_SHA256_C)
+#endif /* MBEDTLS_SHA256_C */
+#if defined(MBEDTLS_SHA512_C)
+#endif /* MBEDTLS_SHA512_C */
+#if defined(MBEDTLS_SSL_CACHE_C)
+#endif /* MBEDTLS_SSL_CACHE_C */
+#if defined(MBEDTLS_SSL_COOKIE_C)
+#endif /* MBEDTLS_SSL_COOKIE_C */
+#if defined(MBEDTLS_SSL_TICKET_C)
+#endif /* MBEDTLS_SSL_TICKET_C */
+#if defined(MBEDTLS_SSL_CLI_C)
+#endif /* MBEDTLS_SSL_CLI_C */
+#if defined(MBEDTLS_SSL_SRV_C)
+#endif /* MBEDTLS_SSL_SRV_C */
+#if defined(MBEDTLS_SSL_TLS_C)
+#endif /* MBEDTLS_SSL_TLS_C */
+#if defined(MBEDTLS_THREADING_C)
+#endif /* MBEDTLS_THREADING_C */
+#if defined(MBEDTLS_TIMING_C)
+#endif /* MBEDTLS_TIMING_C */
+#if defined(MBEDTLS_VERSION_C)
+#endif /* MBEDTLS_VERSION_C */
+#if defined(MBEDTLS_X509_USE_C)
+#endif /* MBEDTLS_X509_USE_C */
+#if defined(MBEDTLS_X509_CRT_PARSE_C)
+#endif /* MBEDTLS_X509_CRT_PARSE_C */
+#if defined(MBEDTLS_X509_CRL_PARSE_C)
+#endif /* MBEDTLS_X509_CRL_PARSE_C */
+#if defined(MBEDTLS_X509_CSR_PARSE_C)
+#endif /* MBEDTLS_X509_CSR_PARSE_C */
+#if defined(MBEDTLS_X509_CREATE_C)
+#endif /* MBEDTLS_X509_CREATE_C */
+#if defined(MBEDTLS_X509_CRT_WRITE_C)
+#endif /* MBEDTLS_X509_CRT_WRITE_C */
+#if defined(MBEDTLS_X509_CSR_WRITE_C)
+#endif /* MBEDTLS_X509_CSR_WRITE_C */
+#if defined(MBEDTLS_XTEA_C)
+#endif /* MBEDTLS_XTEA_C */
+#if defined(MBEDTLS_MPI_WINDOW_SIZE)
+#endif /* MBEDTLS_MPI_WINDOW_SIZE */
+#if defined(MBEDTLS_MPI_MAX_SIZE)
+#endif /* MBEDTLS_MPI_MAX_SIZE */
+#if defined(MBEDTLS_CTR_DRBG_ENTROPY_LEN)
+#endif /* MBEDTLS_CTR_DRBG_ENTROPY_LEN */
+#if defined(MBEDTLS_CTR_DRBG_RESEED_INTERVAL)
+#endif /* MBEDTLS_CTR_DRBG_RESEED_INTERVAL */
+#if defined(MBEDTLS_CTR_DRBG_MAX_INPUT)
+#endif /* MBEDTLS_CTR_DRBG_MAX_INPUT */
+#if defined(MBEDTLS_CTR_DRBG_MAX_REQUEST)
+#endif /* MBEDTLS_CTR_DRBG_MAX_REQUEST */
+#if defined(MBEDTLS_CTR_DRBG_MAX_SEED_INPUT)
+#endif /* MBEDTLS_CTR_DRBG_MAX_SEED_INPUT */
+#if defined(MBEDTLS_HMAC_DRBG_RESEED_INTERVAL)
+#endif /* MBEDTLS_HMAC_DRBG_RESEED_INTERVAL */
+#if defined(MBEDTLS_HMAC_DRBG_MAX_INPUT)
+#endif /* MBEDTLS_HMAC_DRBG_MAX_INPUT */
+#if defined(MBEDTLS_HMAC_DRBG_MAX_REQUEST)
+#endif /* MBEDTLS_HMAC_DRBG_MAX_REQUEST */
+#if defined(MBEDTLS_HMAC_DRBG_MAX_SEED_INPUT)
+#endif /* MBEDTLS_HMAC_DRBG_MAX_SEED_INPUT */
+#if defined(MBEDTLS_ECP_MAX_BITS)
+#endif /* MBEDTLS_ECP_MAX_BITS */
+#if defined(MBEDTLS_ECP_WINDOW_SIZE)
+#endif /* MBEDTLS_ECP_WINDOW_SIZE */
+#if defined(MBEDTLS_ECP_FIXED_POINT_OPTIM)
+#endif /* MBEDTLS_ECP_FIXED_POINT_OPTIM */
+#if defined(MBEDTLS_ENTROPY_MAX_SOURCES)
+#endif /* MBEDTLS_ENTROPY_MAX_SOURCES */
+#if defined(MBEDTLS_ENTROPY_MAX_GATHER)
+#endif /* MBEDTLS_ENTROPY_MAX_GATHER */
+#if defined(MBEDTLS_ENTROPY_MIN_HARDWARE)
+#endif /* MBEDTLS_ENTROPY_MIN_HARDWARE */
+#if defined(MBEDTLS_MEMORY_ALIGN_MULTIPLE)
+#endif /* MBEDTLS_MEMORY_ALIGN_MULTIPLE */
+#if defined(MBEDTLS_PLATFORM_STD_MEM_HDR)
+#endif /* MBEDTLS_PLATFORM_STD_MEM_HDR */
+#if defined(MBEDTLS_PLATFORM_STD_CALLOC)
+#endif /* MBEDTLS_PLATFORM_STD_CALLOC */
+#if defined(MBEDTLS_PLATFORM_STD_FREE)
+#endif /* MBEDTLS_PLATFORM_STD_FREE */
+#if defined(MBEDTLS_PLATFORM_STD_EXIT)
+#endif /* MBEDTLS_PLATFORM_STD_EXIT */
+#if defined(MBEDTLS_PLATFORM_STD_TIME)
+#endif /* MBEDTLS_PLATFORM_STD_TIME */
+#if defined(MBEDTLS_PLATFORM_STD_FPRINTF)
+#endif /* MBEDTLS_PLATFORM_STD_FPRINTF */
+#if defined(MBEDTLS_PLATFORM_STD_PRINTF)
+#endif /* MBEDTLS_PLATFORM_STD_PRINTF */
+#if defined(MBEDTLS_PLATFORM_STD_SNPRINTF)
+#endif /* MBEDTLS_PLATFORM_STD_SNPRINTF */
+#if defined(MBEDTLS_PLATFORM_STD_EXIT_SUCCESS)
+#endif /* MBEDTLS_PLATFORM_STD_EXIT_SUCCESS */
+#if defined(MBEDTLS_PLATFORM_STD_EXIT_FAILURE)
+#endif /* MBEDTLS_PLATFORM_STD_EXIT_FAILURE */
+#if defined(MBEDTLS_PLATFORM_STD_NV_SEED_READ)
+#endif /* MBEDTLS_PLATFORM_STD_NV_SEED_READ */
+#if defined(MBEDTLS_PLATFORM_STD_NV_SEED_WRITE)
+#endif /* MBEDTLS_PLATFORM_STD_NV_SEED_WRITE */
+#if defined(MBEDTLS_PLATFORM_STD_NV_SEED_FILE)
+#endif /* MBEDTLS_PLATFORM_STD_NV_SEED_FILE */
+#if defined(MBEDTLS_PLATFORM_CALLOC_MACRO)
+#endif /* MBEDTLS_PLATFORM_CALLOC_MACRO */
+#if defined(MBEDTLS_PLATFORM_FREE_MACRO)
+#endif /* MBEDTLS_PLATFORM_FREE_MACRO */
+#if defined(MBEDTLS_PLATFORM_EXIT_MACRO)
+#endif /* MBEDTLS_PLATFORM_EXIT_MACRO */
+#if defined(MBEDTLS_PLATFORM_TIME_MACRO)
+#endif /* MBEDTLS_PLATFORM_TIME_MACRO */
+#if defined(MBEDTLS_PLATFORM_TIME_TYPE_MACRO)
+#endif /* MBEDTLS_PLATFORM_TIME_TYPE_MACRO */
+#if defined(MBEDTLS_PLATFORM_FPRINTF_MACRO)
+#endif /* MBEDTLS_PLATFORM_FPRINTF_MACRO */
+#if defined(MBEDTLS_PLATFORM_PRINTF_MACRO)
+#endif /* MBEDTLS_PLATFORM_PRINTF_MACRO */
+#if defined(MBEDTLS_PLATFORM_SNPRINTF_MACRO)
+#endif /* MBEDTLS_PLATFORM_SNPRINTF_MACRO */
+#if defined(MBEDTLS_PLATFORM_NV_SEED_READ_MACRO)
+#endif /* MBEDTLS_PLATFORM_NV_SEED_READ_MACRO */
+#if defined(MBEDTLS_PLATFORM_NV_SEED_WRITE_MACRO)
+#endif /* MBEDTLS_PLATFORM_NV_SEED_WRITE_MACRO */
+#if defined(MBEDTLS_SSL_CACHE_DEFAULT_TIMEOUT)
+#endif /* MBEDTLS_SSL_CACHE_DEFAULT_TIMEOUT */
+#if defined(MBEDTLS_SSL_CACHE_DEFAULT_MAX_ENTRIES)
+#endif /* MBEDTLS_SSL_CACHE_DEFAULT_MAX_ENTRIES */
+#if defined(MBEDTLS_SSL_MAX_CONTENT_LEN)
+#endif /* MBEDTLS_SSL_MAX_CONTENT_LEN */
+#if defined(MBEDTLS_SSL_IN_CONTENT_LEN)
+#endif /* MBEDTLS_SSL_IN_CONTENT_LEN */
+#if defined(MBEDTLS_SSL_OUT_CONTENT_LEN)
+#endif /* MBEDTLS_SSL_OUT_CONTENT_LEN */
+#if defined(MBEDTLS_SSL_DTLS_MAX_BUFFERING)
+#endif /* MBEDTLS_SSL_DTLS_MAX_BUFFERING */
+#if defined(MBEDTLS_SSL_DEFAULT_TICKET_LIFETIME)
+#endif /* MBEDTLS_SSL_DEFAULT_TICKET_LIFETIME */
+#if defined(MBEDTLS_PSK_MAX_LEN)
+#endif /* MBEDTLS_PSK_MAX_LEN */
+#if defined(MBEDTLS_SSL_COOKIE_TIMEOUT)
+#endif /* MBEDTLS_SSL_COOKIE_TIMEOUT */
+#if defined(MBEDTLS_X509_MAX_INTERMEDIATE_CA)
+#endif /* MBEDTLS_X509_MAX_INTERMEDIATE_CA */
+#if defined(MBEDTLS_X509_MAX_FILE_PATH_LEN)
+#endif /* MBEDTLS_X509_MAX_FILE_PATH_LEN */
+#if defined(MBEDTLS_TLS_DEFAULT_ALLOW_SHA1_IN_CERTIFICATES)
+#endif /* MBEDTLS_TLS_DEFAULT_ALLOW_SHA1_IN_CERTIFICATES */
+#if defined(MBEDTLS_TLS_DEFAULT_ALLOW_SHA1_IN_KEY_EXCHANGE)
+#endif /* MBEDTLS_TLS_DEFAULT_ALLOW_SHA1_IN_KEY_EXCHANGE */
+#if defined(MBEDTLS_PLATFORM_ZEROIZE_ALT)
+#endif /* MBEDTLS_PLATFORM_ZEROIZE_ALT */
+#if defined(MBEDTLS_PLATFORM_GMTIME_R_ALT)
+#endif /* MBEDTLS_PLATFORM_GMTIME_R_ALT */
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif /* _MSC_VER */

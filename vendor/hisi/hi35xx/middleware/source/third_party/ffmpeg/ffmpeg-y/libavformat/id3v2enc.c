@@ -1,0 +1,9 @@
+#include <stdint.h>
+#include <string.h>
+#include "libavutil/avstring.h"
+#include "libavutil/dict.h"
+#include "libavutil/intreadwrite.h"
+#include "avformat.h"
+#include "avio.h"
+#include "avio_internal.h"
+#include "id3v2.h"

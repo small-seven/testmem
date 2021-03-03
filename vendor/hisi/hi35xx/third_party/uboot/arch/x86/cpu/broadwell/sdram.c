@@ -1,0 +1,17 @@
+#include <common.h>
+#include <dm.h>
+#include <init.h>
+#include <pci.h>
+#include <syscon.h>
+#include <asm/cpu.h>
+#include <asm/io.h>
+#include <asm/lpc_common.h>
+#include <asm/mrccache.h>
+#include <asm/mrc_common.h>
+#include <asm/mtrr.h>
+#include <asm/pci.h>
+#include <asm/arch/iomap.h>
+#include <asm/arch/me.h>
+#include <asm/arch/pch.h>
+#include <asm/arch/pei_data.h>
+#include <asm/arch/pm.h>

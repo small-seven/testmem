@@ -1,0 +1,10 @@
+#define FT_MAKE_OPTION_SINGLE_OBJECT
+#include <ft2build.h>
+#include "ftcbasic.c"
+#include "ftccache.c"
+#include "ftccmap.c"
+#include "ftcglyph.c"
+#include "ftcimage.c"
+#include "ftcmanag.c"
+#include "ftcmru.c"
+#include "ftcsbits.c"

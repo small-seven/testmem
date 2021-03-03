@@ -1,0 +1,7 @@
+#include "common/image.h"
+#include "components/ui_canvas.h"
+#include "draw/draw_arc.h"
+#include "draw/draw_curve.h"
+#include "draw/draw_image.h"
+#include "draw/draw_line.h"
+#include "draw/draw_rect.h"

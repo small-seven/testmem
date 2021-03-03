@@ -1,0 +1,7 @@
+#include "yportenv.h"
+#include "yaffs_guts.h"
+#include "yaffs_nandif.h"
+#include "yaffs_packedtags2.h"
+#include "yramsim.h"
+#include "yaffs_trace.h"
+#include "yaffsfs.h"

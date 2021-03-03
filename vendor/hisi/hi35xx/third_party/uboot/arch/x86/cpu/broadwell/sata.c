@@ -1,0 +1,9 @@
+#include <common.h>
+#include <dm.h>
+#include <asm/gpio.h>
+#include <asm/io.h>
+#include <asm/intel_regs.h>
+#include <asm/lpc_common.h>
+#include <asm/pch_common.h>
+#include <asm/pch_common.h>
+#include <asm/arch/pch.h>

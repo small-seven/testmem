@@ -1,0 +1,20 @@
+#include <inttypes.h>
+#include <math.h>
+#include <stdint.h>
+#include "libavutil/channel_layout.h"
+#include "libavutil/float_dsp.h"
+#define BITSTREAM_READER_LE
+#include "avcodec.h"
+#include "fft.h"
+#include "get_bits.h"
+#include "internal.h"
+#include "lsp.h"
+#include "sinewin.h"
+#include "twinvq.h"
+#include "metasound_data.h"
+typedef struct MetasoundProps {
+    uint32_t tag;
+    int      bit_rate;
+    int      channels;
+    int      sample_rate;
+} MetasoundProps;

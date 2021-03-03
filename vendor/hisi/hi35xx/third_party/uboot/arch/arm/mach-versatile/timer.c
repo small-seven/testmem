@@ -1,0 +1,10 @@
+#include <common.h>
+#define TIMER_ENABLE	(1 << 7)
+#define TIMER_MODE_MSK	(1 << 6)
+#define TIMER_MODE_FR	(0 << 6)
+#define TIMER_MODE_PD	(1 << 6)
+#define TIMER_INT_EN	(1 << 5)
+#define TIMER_PRS_MSK	(3 << 2)
+#define TIMER_PRS_8S	(1 << 3)
+#define TIMER_SIZE_MSK	(1 << 2)
+#define TIMER_ONE_SHT	(1 << 0)

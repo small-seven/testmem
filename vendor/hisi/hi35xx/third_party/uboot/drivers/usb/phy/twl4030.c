@@ -1,0 +1,10 @@
+#include <twl4030.h>
+#define OPMODE_MASK		(3 << 3)
+#define XCVRSELECT_MASK		(3 << 0)
+#define CARKITMODE		(1 << 2)
+#define OTG_ENAB		(1 << 5)
+#define PHYPWD			(1 << 0)
+#define CLOCKGATING_EN		(1 << 2)
+#define CLK32K_EN		(1 << 1)
+#define REQ_PHY_DPLL_CLK	(1 << 0)
+#define PHY_DPLL_CLK		(1 << 0)

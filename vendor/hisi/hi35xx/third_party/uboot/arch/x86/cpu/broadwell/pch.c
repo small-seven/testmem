@@ -1,0 +1,21 @@
+#include <common.h>
+#include <dm.h>
+#include <pch.h>
+#include <asm/cpu.h>
+#include <asm/gpio.h>
+#include <asm/i8259.h>
+#include <asm/intel_regs.h>
+#include <asm/io.h>
+#include <asm/ioapic.h>
+#include <asm/lpc_common.h>
+#include <asm/pch_common.h>
+#include <asm/arch/cpu.h>
+#include <asm/arch/gpio.h>
+#include <asm/arch/iomap.h>
+#include <asm/arch/pch.h>
+#include <asm/arch/pm.h>
+#include <asm/arch/rcb.h>
+#include <asm/arch/serialio.h>
+#include <asm/arch/spi.h>
+#include <dm/uclass-internal.h>
+#define BIOS_CTRL	0xdc

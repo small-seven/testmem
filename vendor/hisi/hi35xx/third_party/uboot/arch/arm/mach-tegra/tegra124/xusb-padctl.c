@@ -1,0 +1,29 @@
+#define pr_fmt(fmt) "tegra-xusb-padctl: " fmt
+#include <common.h>
+#include <errno.h>
+#include <dm/of_access.h>
+#include <dm/ofnode.h>
+#include "../xusb-padctl-common.h"
+#include <dt-bindings/pinctrl/pinctrl-tegra-xusb.h>
+#define XUSB_PADCTL_ELPG_PROGRAM 0x01c
+#define XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_VCORE_DOWN (1 << 26)
+#define XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_CLAMP_EN_EARLY (1 << 25)
+#define XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_CLAMP_EN (1 << 24)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL1 0x040
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL1_PLL0_LOCKDET (1 << 19)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL1_REFCLK_SEL_MASK (0xf << 12)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL1_PLL_RST (1 << 1)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL2 0x044
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL2_REFCLKBUF_EN (1 << 6)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL2_TXCLKREF_EN (1 << 5)
+#define XUSB_PADCTL_IOPHY_PLL_P0_CTL2_TXCLKREF_SEL (1 << 4)
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1 0x138
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1_PLL1_LOCKDET (1 << 27)
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1_PLL1_MODE (1 << 24)
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1_PLL_PWR_OVRD (1 << 3)
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1_PLL_RST (1 << 1)
+#define XUSB_PADCTL_IOPHY_PLL_S0_CTL1_PLL_IDDQ (1 << 0)
+#define XUSB_PADCTL_IOPHY_MISC_PAD_S0_CTL1 0x148
+#define XUSB_PADCTL_IOPHY_MISC_PAD_S0_CTL1_IDDQ_OVRD (1 << 1)
+#define XUSB_PADCTL_IOPHY_MISC_PAD_S0_CTL1_IDDQ (1 << 0)
+#define TEGRA124_LANE(_name, _offset, _shift, _mask, _iddq, _funcs)	\

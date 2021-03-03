@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <string.h>
+#include <openssl/asn1.h>
+#include <openssl/evp.h>
+#include <openssl/objects.h>
+#include "testutil.h"
+#include "internal/nelem.h"
+#include "../crypto/asn1/tbl_standard.h"
+#include "crypto/asn1.h"
+#include "../crypto/asn1/standard_methods.h"

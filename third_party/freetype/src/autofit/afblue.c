@@ -1,0 +1,9 @@
+#include "aftypes.h"
+#ifdef AF_CONFIG_OPTION_CJK
+#ifdef AF_CONFIG_OPTION_CJK_BLUE_HANI_VERT
+#endif /* AF_CONFIG_OPTION_CJK_BLUE_HANI_VERT */
+#endif /* AF_CONFIG_OPTION_CJK                */
+#ifdef AF_CONFIG_OPTION_CJK
+#ifdef AF_CONFIG_OPTION_CJK_BLUE_HANI_VERT
+#endif /* AF_CONFIG_OPTION_CJK_BLUE_HANI_VERT */
+#endif /* AF_CONFIG_OPTION_CJK                */

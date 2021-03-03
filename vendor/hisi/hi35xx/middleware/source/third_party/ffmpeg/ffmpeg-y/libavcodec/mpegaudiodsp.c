@@ -1,0 +1,6 @@
+#include "config.h"
+#include "libavutil/attributes.h"
+#include "libavutil/thread.h"
+#include "mpegaudiodsp.h"
+#include "dct.h"
+#include "dct32.h"

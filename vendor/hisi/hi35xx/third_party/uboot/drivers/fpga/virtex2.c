@@ -1,0 +1,63 @@
+#include <common.h>
+#include <console.h>
+#include <virtex2.h>
+#if 0
+#define FPGA_DEBUG
+#endif
+#ifdef	FPGA_DEBUG
+#define	PRINTF(fmt, args...)	printf(fmt, ##args)
+#else
+#define PRINTF(fmt, args...)
+#endif
+#ifndef CONFIG_SYS_FPGA_CHECK_BUSY
+#undef CONFIG_SYS_FPGA_CHECK_BUSY
+#endif
+#ifndef CONFIG_FPGA_DELAY
+#define CONFIG_FPGA_DELAY()
+#endif
+#ifndef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#define CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifndef CONFIG_SYS_FPGA_CHECK_CTRLC
+#undef CONFIG_SYS_FPGA_CHECK_CTRLC
+#endif
+#ifndef CONFIG_SYS_FPGA_CHECK_ERROR
+#define CONFIG_SYS_FPGA_CHECK_ERROR
+#endif
+#ifndef CONFIG_SYS_FPGA_WAIT_INIT
+#define CONFIG_SYS_FPGA_WAIT_INIT	CONFIG_SYS_HZ / 2	/* 500 ms */
+#endif
+#ifndef CONFIG_SYS_FPGA_WAIT_BUSY
+#define CONFIG_SYS_FPGA_WAIT_BUSY	CONFIG_SYS_HZ / 200	/* 5 ms*/
+#endif
+#ifndef	CONFIG_SYS_FPGA_WAIT_CONFIG
+#define CONFIG_SYS_FPGA_WAIT_CONFIG	CONFIG_SYS_HZ / 5	/* 200 ms */
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_CTRLC
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_ERROR
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_BUSY
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_CTRLC
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_CTRLC
+#endif
+#ifdef CONFIG_SYS_FPGA_CHECK_ERROR
+#endif
+#ifdef CONFIG_SYS_FPGA_PROG_FEEDBACK
+#endif

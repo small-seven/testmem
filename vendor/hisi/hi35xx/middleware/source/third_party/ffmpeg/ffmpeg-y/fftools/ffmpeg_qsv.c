@@ -1,0 +1,9 @@
+#include <mfx/mfxvideo.h>
+#include <stdlib.h>
+#include "libavutil/dict.h"
+#include "libavutil/hwcontext.h"
+#include "libavutil/hwcontext_qsv.h"
+#include "libavutil/mem.h"
+#include "libavutil/opt.h"
+#include "libavcodec/qsv.h"
+#include "ffmpeg.h"

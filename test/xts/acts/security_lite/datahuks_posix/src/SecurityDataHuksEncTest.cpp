@@ -1,0 +1,9 @@
+#include "SecurityDataHuks.h"
+#include "hks_client.h"
+#include "hks_types.h"
+#include <securec.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "gtest/gtest.h"

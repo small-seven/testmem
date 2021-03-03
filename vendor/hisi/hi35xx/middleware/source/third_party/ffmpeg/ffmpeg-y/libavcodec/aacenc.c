@@ -1,0 +1,18 @@
+#include "libavutil/libm.h"
+#include "libavutil/thread.h"
+#include "libavutil/float_dsp.h"
+#include "libavutil/opt.h"
+#include "avcodec.h"
+#include "put_bits.h"
+#include "internal.h"
+#include "mpeg4audio.h"
+#include "kbdwin.h"
+#include "sinewin.h"
+#include "aac.h"
+#include "aactab.h"
+#include "aacenc.h"
+#include "aacenctab.h"
+#include "aacenc_utils.h"
+#include "psymodel.h"
+#define WINDOW_FUNC(type) \
+#define AACENC_FLAGS AV_OPT_FLAG_ENCODING_PARAM | AV_OPT_FLAG_AUDIO_PARAM

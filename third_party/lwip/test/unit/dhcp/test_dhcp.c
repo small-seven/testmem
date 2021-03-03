@@ -1,0 +1,6 @@
+#include "test_dhcp.h"
+#include "lwip/netif.h"
+#include "lwip/dhcp.h"
+#include "lwip/prot/dhcp.h"
+#include "lwip/etharp.h"
+#include "netif/ethernet.h"

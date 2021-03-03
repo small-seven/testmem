@@ -1,0 +1,10 @@
+#include "os_support.h"
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <elf.h>
+#include <unistd.h>
+#include <errno.h>

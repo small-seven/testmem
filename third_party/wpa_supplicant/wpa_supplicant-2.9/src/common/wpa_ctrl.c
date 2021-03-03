@@ -1,0 +1,104 @@
+#include "includes.h"
+#ifdef CONFIG_CTRL_IFACE
+#ifdef CONFIG_CTRL_IFACE_UNIX
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/un.h>
+#include <unistd.h>
+#include <fcntl.h>
+#endif /* CONFIG_CTRL_IFACE_UNIX */
+#ifdef CONFIG_CTRL_IFACE_UDP_REMOTE
+#include <netdb.h>
+#endif /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#ifdef ANDROID
+#include <dirent.h>
+#include <sys/stat.h>
+#include <cutils/sockets.h>
+#include "private/android_filesystem_config.h"
+#endif /* ANDROID */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#include <net/if.h>
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#include "wpa_ctrl.h"
+#include "common.h"
+#if defined(CONFIG_CTRL_IFACE_UNIX) || defined(CONFIG_CTRL_IFACE_UDP)
+#define CTRL_IFACE_SOCKET
+#endif /* CONFIG_CTRL_IFACE_UNIX || CONFIG_CTRL_IFACE_UDP */
+#ifdef CONFIG_CTRL_IFACE_UDP
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP */
+#ifdef CONFIG_CTRL_IFACE_UNIX
+#endif /* CONFIG_CTRL_IFACE_UNIX */
+#ifdef CONFIG_CTRL_IFACE_NAMED_PIPE
+#endif /* CONFIG_CTRL_IFACE_NAMED_PIPE */
+#ifdef CONFIG_CTRL_IFACE_UNIX
+#ifndef CONFIG_CTRL_IFACE_CLIENT_DIR
+#define CONFIG_CTRL_IFACE_CLIENT_DIR "/tmp"
+#endif /* CONFIG_CTRL_IFACE_CLIENT_DIR */
+#ifndef CONFIG_CTRL_IFACE_CLIENT_PREFIX
+#define CONFIG_CTRL_IFACE_CLIENT_PREFIX "wpa_ctrl_"
+#endif /* CONFIG_CTRL_IFACE_CLIENT_PREFIX */
+#ifdef ANDROID
+#endif /* ANDROID */
+#ifdef ANDROID
+#endif /* ANDROID */
+#ifdef ANDROID
+#endif /* ANDROID */
+#else /* CONFIG_CTRL_IFACE_UNIX */
+#ifdef ANDROID
+#endif /* ANDROID */
+#endif /* CONFIG_CTRL_IFACE_UNIX */
+#ifdef CONFIG_CTRL_IFACE_UDP
+#ifdef CONFIG_CTRL_IFACE_UDP_REMOTE
+#endif /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#ifdef CONFIG_CTRL_IFACE_UDP_REMOTE
+#else /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#endif /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_REMOTE
+#else /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#endif /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_REMOTE
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_REMOTE */
+#ifdef CONFIG_CTRL_IFACE_UDP_IPV6
+#else /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#endif /* CONFIG_CTRL_IFACE_UDP_IPV6 */
+#define WPA_CTRL_MAX_PS_NAME 100
+#endif /* CONFIG_CTRL_IFACE_UDP */
+#ifdef CTRL_IFACE_SOCKET
+#ifdef CONFIG_CTRL_IFACE_UDP
+#endif /* CONFIG_CTRL_IFACE_UDP */
+#endif /* CTRL_IFACE_SOCKET */
+#ifdef CTRL_IFACE_SOCKET
+#endif /* CTRL_IFACE_SOCKET */
+#ifdef CONFIG_CTRL_IFACE_NAMED_PIPE
+#ifndef WPA_SUPPLICANT_NAMED_PIPE
+#define WPA_SUPPLICANT_NAMED_PIPE "WpaSupplicant"
+#endif
+#define NAMED_PIPE_PREFIX TEXT("\\\\.\\pipe\\") TEXT(WPA_SUPPLICANT_NAMED_PIPE)
+#ifdef UNICODE
+#else /* UNICODE */
+#endif /* UNICODE */
+#endif /* CONFIG_CTRL_IFACE_NAMED_PIPE */
+#endif /* CONFIG_CTRL_IFACE */

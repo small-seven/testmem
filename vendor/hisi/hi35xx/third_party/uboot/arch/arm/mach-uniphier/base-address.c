@@ -1,0 +1,10 @@
+#include <common.h>
+#include <dm/of.h>
+#include <fdt_support.h>
+#include <linux/io.h>
+#include <linux/libfdt.h>
+#include <linux/sizes.h>
+#include <asm/global_data.h>
+#include "base-address.h"
+#include "sc64-regs.h"
+#include "sg-regs.h"

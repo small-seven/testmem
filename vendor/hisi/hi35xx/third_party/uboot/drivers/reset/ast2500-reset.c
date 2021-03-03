@@ -1,0 +1,9 @@
+#include <common.h>
+#include <dm.h>
+#include <misc.h>
+#include <reset.h>
+#include <reset-uclass.h>
+#include <wdt.h>
+#include <asm/io.h>
+#include <asm/arch/scu_ast2500.h>
+#include <asm/arch/wdt.h>

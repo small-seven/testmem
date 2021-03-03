@@ -1,0 +1,49 @@
+#define pr_fmt(fmt) "tegra-xusb-padctl: " fmt
+#include <common.h>
+#include <errno.h>
+#include <dm/of_access.h>
+#include <dm/ofnode.h>
+#include "../xusb-padctl-common.h"
+#include <asm/arch/clock.h>
+#include <dt-bindings/pinctrl/pinctrl-tegra-xusb.h>
+#define TEGRA210_LANE(_name, _offset, _shift, _mask, _iddq, _funcs)	\
+#define XUSB_PADCTL_ELPG_PROGRAM 0x024
+#define  XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_VCORE_DOWN (1 << 31)
+#define  XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_CLAMP_EN_EARLY (1 << 30)
+#define  XUSB_PADCTL_ELPG_PROGRAM_AUX_MUX_LP0_CLAMP_EN (1 << 29)
+#define XUSB_PADCTL_UPHY_PLL_P0_CTL1 0x360
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_FREQ_NDIV_MASK (0xff << 20)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_FREQ_NDIV(x) (((x) & 0xff) << 20)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_FREQ_MDIV_MASK (0x3 << 16)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_LOCKDET_STATUS (1 << 15)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_PWR_OVRD (1 << 4)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_ENABLE (1 << 3)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_SLEEP_MASK (0x3 << 1)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_SLEEP(x) (((x) & 0x3) << 1)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL1_IDDQ (1 << 0)
+#define XUSB_PADCTL_UPHY_PLL_P0_CTL2 0x364
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL2_CAL_CTRL_MASK (0xffffff << 4)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL2_CAL_CTRL(x) (((x) & 0xffffff) << 4)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL2_CAL_OVRD (1 << 2)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL2_CAL_DONE (1 << 1)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL2_CAL_EN (1 << 0)
+#define XUSB_PADCTL_UPHY_PLL_P0_CTL4 0x36c
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL4_TXCLKREF_EN (1 << 15)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL4_TXCLKREF_SEL_MASK (0x3 << 12)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL4_TXCLKREF_SEL(x) (((x) & 0x3) << 12)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL4_REFCLKBUF_EN (1 << 8)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL4_REFCLK_SEL_MASK (0xf << 4)
+#define XUSB_PADCTL_UPHY_PLL_P0_CTL5 0x370
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL5_DCO_CTRL_MASK (0xff << 16)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL5_DCO_CTRL(x) (((x) & 0xff) << 16)
+#define XUSB_PADCTL_UPHY_PLL_P0_CTL8 0x37c
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL8_RCAL_DONE (1 << 31)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL8_RCAL_OVRD (1 << 15)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL8_RCAL_CLK_EN (1 << 13)
+#define  XUSB_PADCTL_UPHY_PLL_P0_CTL8_RCAL_EN (1 << 12)
+#define CLK_RST_XUSBIO_PLL_CFG0 0x51c
+#define  CLK_RST_XUSBIO_PLL_CFG0_SEQ_ENABLE (1 << 24)
+#define  CLK_RST_XUSBIO_PLL_CFG0_PADPLL_SLEEP_IDDQ (1 << 13)
+#define  CLK_RST_XUSBIO_PLL_CFG0_PADPLL_USE_LOCKDET (1 << 6)
+#define  CLK_RST_XUSBIO_PLL_CFG0_CLK_ENABLE_SWCTL (1 << 2)
+#define  CLK_RST_XUSBIO_PLL_CFG0_PADPLL_RESET_SWCTL (1 << 0)

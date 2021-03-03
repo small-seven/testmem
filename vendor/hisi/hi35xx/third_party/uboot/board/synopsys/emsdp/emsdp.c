@@ -1,0 +1,25 @@
+#include <common.h>
+#include <dwmmc.h>
+#include <malloc.h>
+#include <asm/arcregs.h>
+#define ARC_PERIPHERAL_BASE		0xF0000000
+#define CGU_ARC_FMEAS_ARC		(void *)(ARC_PERIPHERAL_BASE + 0x84)
+#define CGU_ARC_FMEAS_ARC_START		BIT(31)
+#define CGU_ARC_FMEAS_ARC_DONE		BIT(30)
+#define CGU_ARC_FMEAS_ARC_CNT_MASK	GENMASK(14, 0)
+#define CGU_ARC_FMEAS_ARC_RCNT_OFFSET	0
+#define CGU_ARC_FMEAS_ARC_FCNT_OFFSET	15
+#define SDIO_BASE			(void *)(ARC_PERIPHERAL_BASE + 0x10000)
+#define EMSDP_PSRAM_BASE		0xf2001000
+#define PSRAM_FLASH_CONFIG_REG_0	(void *)(EMSDP_PSRAM_BASE + 0x10)
+#define PSRAM_FLASH_CONFIG_REG_1	(void *)(EMSDP_PSRAM_BASE + 0x14)
+#define CRE_ENABLE			BIT(31)
+#define CRE_DRIVE_CMD			BIT(6)
+#define PSRAM_RCR_DPD			BIT(1)
+#define PSRAM_RCR_PAGE_MODE		BIT(7)
+#define PSRAM_RCR_SETUP		((PSRAM_RCR_DPD | PSRAM_RCR_PAGE_MODE) << 1)
+#define CREG_BASE		0xF0001000
+#define CREG_BOOT		(void *)(CREG_BASE + 0x0FF0)
+#define CREG_IP_SW_RESET	(void *)(CREG_BASE + 0x0FF0)
+#define CREG_IP_VERSION		(void *)(CREG_BASE + 0x0FF8)
+#define CREG_BOOT_WP_BIT	BIT(8)

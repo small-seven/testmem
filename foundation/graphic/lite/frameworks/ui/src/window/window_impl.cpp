@@ -1,0 +1,6 @@
+#include "window/window_impl.h"
+#include "client/iwindows_manager.h"
+#include "common/screen_device_proxy.h"
+#include "core/measure_manager.h"
+#include "core/render_manager.h"
+#include "graphic_log.h"

@@ -1,0 +1,14 @@
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <errno.h>
+#include <libgen.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <config.h>
+#include "ptrace.h"
+#include "test.h"
+#include "lapi/signal.h"

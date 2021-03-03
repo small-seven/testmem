@@ -1,0 +1,13 @@
+#define _GNU_SOURCE
+#include <sched.h>
+#include <sys/syscall.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include "test.h"
+#include "lapi/syscalls.h"
+#include "lapi/namespaces_constants.h"
+#include "ns_common.h"

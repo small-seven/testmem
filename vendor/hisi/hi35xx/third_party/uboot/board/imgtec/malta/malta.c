@@ -1,0 +1,12 @@
+#include <common.h>
+#include <ide.h>
+#include <init.h>
+#include <netdev.h>
+#include <pci.h>
+#include <pci_gt64120.h>
+#include <pci_msc01.h>
+#include <rtc.h>
+#include <asm/addrspace.h>
+#include <asm/io.h>
+#include <asm/malta.h>
+#include "superio.h"

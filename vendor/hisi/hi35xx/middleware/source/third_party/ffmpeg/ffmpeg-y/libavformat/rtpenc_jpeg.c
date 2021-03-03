@@ -1,0 +1,5 @@
+#include "libavcodec/bytestream.h"
+#include "libavcodec/mjpeg.h"
+#include "libavcodec/jpegtables.h"
+#include "libavutil/intreadwrite.h"
+#include "rtpenc.h"

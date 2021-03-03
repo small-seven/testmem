@@ -1,0 +1,121 @@
+#include <common.h>
+#include <console.h>
+#include <debug_uart.h>
+#include <dm.h>
+#include <env.h>
+#include <stdarg.h>
+#include <iomux.h>
+#include <malloc.h>
+#include <mapmem.h>
+#include <os.h>
+#include <serial.h>
+#include <stdio_dev.h>
+#include <exports.h>
+#include <env_internal.h>
+#include <watchdog.h>
+#include <serial.h>
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#else
+#endif
+#ifdef CONFIG_SILENT_CONSOLE
+#if !CONFIG_IS_ENABLED(SILENT_CONSOLE_UPDATE_ON_SET)
+#endif
+#if !CONFIG_IS_ENABLED(SILENT_CONSOLE_UPDATE_ON_RELOC)
+#endif
+#endif
+#if CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV)
+#ifdef CONFIG_SYS_CONSOLE_OVERWRITE_ROUTINE
+#define OVERWRITE_CONSOLE overwrite_console()
+#else
+#define OVERWRITE_CONSOLE 0
+#endif /* CONFIG_SYS_CONSOLE_OVERWRITE_ROUTINE */
+#endif /* CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV) */
+#ifdef CONFIG_DM_SERIAL
+#endif
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#if CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV)
+#endif
+#else
+#if CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV)
+#endif
+#endif /* CONIFIG_IS_ENABLED(CONSOLE_MUX) */
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#else
+#endif
+#ifdef CONFIG_WATCHDOG
+#endif
+#ifdef CONFIG_DISABLE_CONSOLE
+#endif
+#ifdef CONFIG_CONSOLE_RECORD
+#endif
+#ifdef CONFIG_DISABLE_CONSOLE
+#endif
+#ifdef CONFIG_CONSOLE_RECORD
+#endif
+#define PRE_CONSOLE_FLUSHPOINT1_SERIAL			0
+#define PRE_CONSOLE_FLUSHPOINT2_EVERYTHING_BUT_SERIAL	1
+#if CONFIG_IS_ENABLED(PRE_CONSOLE_BUFFER)
+#define CIRC_BUF_IDX(idx) ((idx) % (unsigned long)CONFIG_PRE_CON_BUF_SZ)
+#ifdef CONFIG_SILENT_CONSOLE
+#endif
+#else
+#endif
+#ifdef CONFIG_SANDBOX
+#endif
+#ifdef CONFIG_DEBUG_UART
+#endif
+#ifdef CONFIG_CONSOLE_RECORD
+#endif
+#ifdef CONFIG_SILENT_CONSOLE
+#endif
+#ifdef CONFIG_DISABLE_CONSOLE
+#endif
+#ifdef CONFIG_SANDBOX
+#endif
+#ifdef CONFIG_DEBUG_UART
+#endif
+#ifdef CONFIG_CONSOLE_RECORD
+#endif
+#ifdef CONFIG_SILENT_CONSOLE
+#endif
+#ifdef CONFIG_DISABLE_CONSOLE
+#endif
+#ifdef CONFIG_CONSOLE_RECORD
+#endif
+#ifdef CONFIG_VIDCONSOLE_AS_LCD
+#endif
+#ifdef CONFIG_SILENT_CONSOLE
+#endif
+#if !CONFIG_IS_ENABLED(PRE_CONSOLE_BUFFER)
+#endif
+#ifndef CONFIG_MINI_BOOT
+#endif
+#if CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV)
+#ifdef CONFIG_SYS_CONSOLE_ENV_OVERWRITE
+#endif /* CONFIG_SYS_CONSOLE_ENV_OVERWRITE */
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#endif
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#endif
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#endif
+#ifndef CONFIG_SYS_CONSOLE_INFO_QUIET
+#endif /* CONFIG_SYS_CONSOLE_INFO_QUIET */
+#ifdef CONFIG_VIDCONSOLE_AS_LCD
+#endif
+#ifdef CONFIG_SYS_CONSOLE_ENV_OVERWRITE
+#endif /* CONFIG_SYS_CONSOLE_ENV_OVERWRITE */
+#if 0
+#endif
+#else /* !CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV) */
+#ifdef CONFIG_SPLASH_SCREEN
+#endif
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#endif
+#if CONFIG_IS_ENABLED(CONSOLE_MUX)
+#endif
+#ifndef CONFIG_SYS_CONSOLE_INFO_QUIET
+#endif /* CONFIG_SYS_CONSOLE_INFO_QUIET */
+#if 0
+#endif
+#endif /* CONFIG_IS_ENABLED(SYS_CONSOLE_IS_IN_ENV) */

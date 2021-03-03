@@ -1,0 +1,11 @@
+#include "jpegd_entry.h"
+#include <common.h>
+#include <command.h>
+#include <malloc.h>
+#include <version.h>
+#include <net.h>
+#include <asm/io.h>
+#include <asm/arch/platform.h>
+#include <config.h>
+#include <cpu_func.h>
+#include "jpegd.h"

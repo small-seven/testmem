@@ -1,0 +1,10 @@
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <pwd.h>
+#include "test.h"
+#include "safe_macros.h"
+#include "compat_16.h"

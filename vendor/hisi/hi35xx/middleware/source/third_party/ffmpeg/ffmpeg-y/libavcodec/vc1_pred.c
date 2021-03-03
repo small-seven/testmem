@@ -1,0 +1,6 @@
+#include "mathops.h"
+#include "mpegutils.h"
+#include "mpegvideo.h"
+#include "vc1.h"
+#include "vc1_pred.h"
+#include "vc1data.h"
